@@ -1,4 +1,4 @@
-baseURL: "https://sbomit.dev/"
+baseURL: "https://idunbarh-sbomit.netlify.app/"
 title: SBOMit
 paginate: 5
 theme: PaperMod
@@ -107,7 +107,7 @@ menu:
   main:
     - identifier: specification
       name: Specification
-      url: https://github.com/SBOMit/website
+      url: https://github.com/SBOMit/specification
       weight: 10
     - identifier: about
       name: About
