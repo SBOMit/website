@@ -1,4 +1,4 @@
-baseURL: "https://idunbarh-sbomit.netlify.app/"
+baseURL: "https://sbomit.dev/"
 title: SBOMit
 paginate: 5
 theme: PaperMod
@@ -17,8 +17,8 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: SBOMit
-  description: "SBOMs on in-toto"
-  keywords: ["Software Bill of Materials", in-toto]
+  description: "Software Bill of Materials on in-toto"
+  keywords: ["Software Bill of Materials", "in-toto", "attestation"]
   author: "SBOMit Maintainers"
   ## images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
