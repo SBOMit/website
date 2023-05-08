@@ -6,7 +6,7 @@ ShowToc: false
 
 ## What is SBOMit?
 
-SBOMit is the name of the project which manages the SBOMit specification format.   A SBOMit document is effectively an SBOM, only with additional verification information added that was generated at the time the supply chain was generated.  This verification information, which uses in-toto attestations and layouts, is able to be validated by a party to get a high degree of assurances about the software.
+SBOMit is the name of the project which manages the SBOMit specification format. An SBOMit document is effectively an SBOM, only with additional verification information added that was generated at the time the supply chain was generated. This verification information, which uses in-toto attestations and layouts, can be validated by a party to get a high degree of assurances about the software.
 
 ## What does a SBOMit document contain and why?
 
