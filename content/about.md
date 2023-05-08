@@ -34,7 +34,7 @@ An SBOMit document contains cryptographically signed metadata about all of the s
 
 To use an analogy, an SBOM today is much like a list of ingredients on a product.  Only in practice, this information is commonly inaccurate, could be changed by a malicious party, and is not verified.   Signing an SBOM helps to stop it from being changed by a malicious party, so you know that the ingredient list you are getting was approved by a specific company.  A SBOMit document also describes in detail the process that went into making the product and has metadata and signatures from all the parties involved, including verification that the keys used were current at that time.  So, in the case of an SBOMit document, you have a high degree of assurance that the proper policies and procedures were followed.
 
-For more information on this topic, please see the [What advantages does in-toto provide] FAQ on the in-toto website.
+For more information on this topic, please see the [What advantages does in-toto provide](https://in-toto.io/in-toto/) on the in-toto website.
 
 ## What if a software supply chain contains insecure steps?  
 
