@@ -1,18 +1,10 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    {{- if site.Copyright }}
-    <span>{{ site.Copyright | markdownify }}</span>
-    {{- else }}
-    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
-    {{- end }}
     <span>
-        Powered by
-        <a href="https://www.netlify.com/" rel="noopener noreferrer" target="_blank">Netlify</a>,
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a>, &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> | 
+        Copyright &copy; SBOMit a Series of LF Projects, LLC
     </span>
     <span>
-        <a href="https://github.com/SBOMit/specification/blob/main/LICENSE.md" rel="noopener noreferrer" target="_blank">Creative Commons Attribution 4.0 International</a>
+        For web site terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/" rel="noopener noreferrer" target="_blank">https://lfprojects.org/</a>.
     </span>
 </footer>
 {{- end }}
