@@ -1,7 +1,7 @@
 # Reporting Security Issues
 
-Please report security issues **confidentially** using
-[GitHub's form](https://github.com/SBOMit/website/security/advisories/new).
+Please report SBOMit Specification security issues **confidentially** using
+[GitHub's form](https://github.com/SBOMit/specification/security/advisories/new).
 
 **Note:** Please do not report such issues publicly on the issue tracker. The
 *issue tracker is intended for bug reports and feature requests.
