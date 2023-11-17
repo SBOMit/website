@@ -57,7 +57,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Software Bill of Materials on In-Toto (SBOMit)"
+    Title: "Software Bill of Materials on in-toto (SBOMit)"
     Content: |
       The SBOMit specification is a SBOM format independent method for attesting components with
       additional verification information. These attestation are generated at the time the supply chain was generated.
