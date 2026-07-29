@@ -35,10 +35,10 @@ right data. SBOMit with Witness gives it that data.
 | | Current SBOM Generation | With SBOMit |
 |---|---|---|
 | **When generated** | Before build (manifests) or after (scanning) | During the build |
-| **Package versions** | From lockfile(often stale or wrong) | Exact versions installed at build time |
+| **Package versions** | From lockfile (often stale or wrong) | Exact versions installed at build time |
 | **Native / unmanaged files** | Missed | Captured via file-access tracing |
-| **False positives** | Common(packages listed but not installed) | Removed(only what was actually used) |
-| **False negatives** | Common(transitive deps, `.so` files missed) | Resolved(everything observed is reported) |
+| **False positives** | Common (packages listed but not installed) | Removed (only what was actually used) |
+| **False negatives** | Common (transitive deps, `.so` files missed) | Resolved (everything observed is reported) |
 | **Cryptographic proof** | None | Signed in-toto attestations at every step |
 | **Tamper resistance** | Easily forged post-hoc | Tamper-evident chain of custody |
 
