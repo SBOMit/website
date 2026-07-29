@@ -25,7 +25,7 @@ Translates:
 - `content/_index.md`
 - `content/faq.md`
 - `content/community.md`
-- `content/documentation.md`
+- `content/getting-started.md`
 
 Skips `CHARTER.md`. Writes `content/*.{es,fr,zh,vi}.md`. Adds `translationKey` to English sources when missing.
 

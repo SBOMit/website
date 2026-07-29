@@ -2,57 +2,123 @@
 author: "SBOMit Maintainers"
 title: "FAQ"
 translationKey: "faq"
-ShowToc: false
+ShowToc: true
+TocOpen: false
 ---
 
-## What is SBOMit?
+## Why do we need Accurate SBOMs?
 
-SBOMit is the name of the project which manages the SBOMit specification format. An SBOMit document is effectively an SBOM, only with additional verification information added that was generated at the time the supply chain was generated. This verification information, which uses in-toto attestations and layouts, can be validated by a party to get a high degree of assurances about the software.
+When [Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) hit in December
+2021, the number of exposed systems exploded from 40,000 to 830,000 in under 72 hours. Log4j was
+buried as a transitive dependency, and most teams had no way to know whether they were running it and where. Incident response turned into an organization-wide mining project.
 
-## What does a SBOMit document contain and why?
+{{< figure src="/images/log4shell-growth.png" alt="Log4Shell affected systems grew from 40,000 to 830,000 in 72 hours" caption="Affected systems in the 72 hours following the Log4Shell outbreak." >}}
 
-A SBOMit document is a signed document that consists of a few different components.  
+Log4Shell made the case for SBOMs clearly: if you had a complete, accurate inventory of every
+component in your software, you could answer "are we affected?" in minutes. Since then, SBOMs have
+been mandated by executive orders, procurement requirements, and industry frameworks. 
+The question now is whether the SBOMs being generated are accurate enough to actually use and
+for most organizations today, they are not. When the next Log4Shell hits, will your SBOM answer the question and do you trust it?
 
-First and foremost, it contains a series of in-toto attestations that were generated as the described software was created.  This includes detailed information about different steps of the software supply chain, including about the version control system, build process, unit testing, dependencies used, fuzzing, license compliance checks, packaging, etc.  For example, the build system used to compile the software in the SBOM has in-toto metadata with the names and secure hashes for the files that were taken from the VCS to be compiled, the names and secure hashes of the files created during compilation, a series of information about the compiler, and a signature by a private key held by the compiler.
+---
 
-This attestation information can be used in coordination with the second item in the SBOMit document: an in-toto layout.  The in-toto layout is signed by the project owner and describes what valid attestation metadata for the project looks like. The layout specifies the private keys for the parties performing the attestations as well as how the steps interconnect.  For example, the VCS must have a signed git tag, which the build system then operates over.  The files compiled by the build system must be the files that were run through the unit tests, which must have passed.   Importantly, an in-toto layout provides a machine-readable policy that can validate the in-toto attestations to ensure that all of those steps were followed, in the right order, on the right items, and with nothing added, skipped, or removed.
+## What can't your package manager/manifest see?
 
-The final item that always appears in the SBOMit document is the supplemental SBOM information.  This information along with the in-toto attestations and in-toto layout can be used to derive an actual SBOM in a variety of formats.  The supplemental SBOM information may include things such as the company name or other information which isn’t included by in-toto but which is desirable to be included in the resulting SBOM.  In this way, an SBOM generated from an SBOMit document, can include supplemental information that was not part of the in-toto process.
+More than you'd expect. We analyzed the top 1,000 Debian-based images on Docker Hub and found that
+a significant percentage of files in many images(sometimes 40–100%) cannot be attributed to any
+package manager at all.
 
-There is also a means to add addendums to an SBOMit document, which will be described later.
+{{< figure src="/images/dark-matter-dockerhub.png" alt="Distribution of untracked files across top 1,000 Docker Hub images" caption="Distribution of files unaccounted for by the package manager across the top 1,000 Debian-based Docker Hub images." >}}
 
-## What are the advantages of a SBOMit document over using a SBOM generation tool that scans the software?
+These are real files, loaded at runtime, potentially vulnerable and invisible to any SBOM tool
+that relies on package manager metadata. Our research found exploitable CVEs among them:
 
-Scanning tools are by their nature looking at a piece of software and then trying to determine what happened before.  By their nature, they are imperfect because they use incomplete information to try to recover what happened in the past.  Practical use has shown that different scanning tools give wildly different results for the same software.  
+- **CVE-2025-32754** (`jenkins/ssh-agent`) — SSH keys are generated at image build time, so every
+  container derived from the image shares the same keys. An attacker can connect to a build
+  container, read the build secret, and leave without a trace.
+- **CVE-2025-32111** (`acme.sh`) — a build secret was leaked during the build process. An attacker
+  with this secret could replace a widely-used Let's Encrypt client and perform man-in-the-middle
+  attacks on a significant portion of internet traffic.
 
-The in-toto attestation portions of an SBOMit document are generated at the time the software is being processed through the software supply chain.  As a result, this information will be much more accurate because in-toto attestations collect detailed information at the time the software product is being made.  This makes an SBOMit document much more accurate, by its nature.
+A scanner running against the final image would not see these. SBOMit captures them because
+Witness observes the build as it happens.
 
-## What are the advantages of a SBOMit document over simply signing an SBOM?
+---
 
-A signed SBOM is a signed statement by someone holding the signing key at an organization that says that the SBOM is accurate.  If the key is stolen, or the party signing the SBOM is incorrect about how the software was made, then the SBOM will be inaccurate.
+## What are in-toto, Witness, and attestations?
 
-An SBOMit document contains cryptographically signed metadata about all of the steps that went into making the software and describes the policy that must be followed.  It is much harder for accidental inaccuracies like skipping a step (which has historically been a problem) or for malicious actions to be undetected.  In-toto also provides greater ability to securely recover from a compromise and to detect and resist malicious actions by a party within an organization.
+**[in-toto](https://in-toto.io/)** is a CNCF framework for securing software supply chains. It
+defines a standard for recording and verifying the steps that produce software like who performed
+each step, what files they operated on, and what the outputs were. Each step is recorded as a
+signed tamper-evident statement about what happened, signed by the party that performed it.
 
-To use an analogy, an SBOM today is much like a list of ingredients on a product.  Only in practice, this information is commonly inaccurate, could be changed by a malicious party, and is not verified.   Signing an SBOM helps to stop it from being changed by a malicious party, so you know that the ingredient list you are getting was approved by a specific company.  A SBOMit document also describes in detail the process that went into making the product and has metadata and signatures from all the parties involved, including verification that the keys used were current at that time.  So, in the case of an SBOMit document, you have a high degree of assurance that the proper policies and procedures were followed.
+**[Witness](https://github.com/in-toto/witness)** is an in-toto implementation that instruments
+your build pipeline to produce these attestations automatically. You wrap your build command with
+`witness run` and it records a signed attestation collection for that step.
+Witness was created by TestifySec and donated to the CNCF in-toto ecosystem.
 
-For more information on this topic, please see the [What advantages does in-toto provide](https://in-toto.io/in-toto/) on the in-toto website.
+**Attestations** are the core primitive. Each one is a signed record of a build step, containing:
 
-## What if a software supply chain contains insecure steps?  
+| Attestation | Captures |
+|---|---|
+| `material` | Input files and their hashes (what went in) |
+| `command-run` | Commands run, files opened, processes spawned |
+| `product` | Output files and their hashes (what came out) |
+| `environment` | OS, runtime, tool versions |
+| `network-trace` | All outbound network connections during the step |
 
-in-toto attestations are not a substitute for having appropriately secure steps in the software supply chain.  For example, if you use an insecure process of building software that just curls and builds software from a website, in-toto layouts can list this insecure action and verify signed attestations indicating that you did this insecure action.  
+Because every attestation is signed at the time the step runs, the build history is
+cryptographically verifiable.
 
-This is why projects like SLSA and FRSCA are built as an opinionated set of rules on top of in-toto steps.  They specify which actions are more important for software supply chain security and mandate certain actions.  
+For more information on this topic, please see [What advantages does in-toto provide](https://in-toto.io/in-toto/) on the in-toto website.
 
-These projects are solving different problems at different levels.  In-toto allows you to capture information about your steps, ensure policies about them are applied, handle trust of keys, etc.  Frameworks like SLSA and FRSCA use in-toto as a mechanism to capture and enforce a specific set of policies that result in more secure supply chains.  
+---
 
-There are efforts to make automated tooling for SLSA and FRSCA to work over in-toto layouts and validate compliance.  When these tools mature, they can be integrated to parse an SBOMit document and provide the appropriate scoring level for the software supply chain described therein.   Thus a user may then configure their system to only accept SLSA level 4 or better software, which also has a valid SBOMit document.
+## How does SBOMit work?
 
-## What if an SBOMit document needs to be changed over time?  E.g., asserting it does not have a certain exploitable vulnerability, adding supplemental information later that wasn’t needed at creation time, etc
+The `sbomit` tool reads a Witness attestation file and:
 
-An SBOMit document may have a series of post-facto addendums.  These are added after the fact and must be ultimately signed by the original SBOMit document’s master key.  These serve to modify the various fields in the SBOMit document or add supplemental information.  
+1. Parses all attestation types to build a complete picture of what happened during the build
+2. Runs **language-specific package resolvers** (Python, Go, Rust, JavaScript/pnpm) to map
+   observed file paths back to package names and exact versions
+3. Filters out temporary/cache artifacts and deduplicates package references
+4. Emits a standard **SPDX** (2.2/2.3) or **CycloneDX** (1.4/1.5) SBOM enriched with
+   build-observed data
 
-Using addendums versus creating a new SBOMit document has an advantage.  In this way both the original document and any addendums will be verifiable and the history of these changes are all contained in the SBOMit document.  Thus addendums are the recommended model for handling changes to an SBOMit document.
+The result is an SBOM that reflects what was actually installed and used including accurate versions, native libraries, and files invisible to package managers. See the [Getting Started guide](/getting-started) for installation and usage.
 
-## Can I derive an SBOM from an SBOMit document?
+---
 
-Yes!  There are various tools in the works that will derive an SBOM from an SBOMit document.  You can get SBOMs in a variety of different formats by using different tools.
+## What if my supply chain has insecure steps?
+
+Attestations are not a substitute for having secure build processes but are a record of what
+happened, not a guarantee that what happened was safe. If your build curls a script from the
+internet and executes it, Witness will faithfully attest that this occurred.
+
+What attestations give you is **visibility and accountability**. The `network-trace` attestation
+will show that unexpected outbound connection. The `command-run` attestation will record the
+process that made it. Nothing can be hidden after the fact, because the attestations are signed at
+build time.
+
+For teams that want to enforce policies on top of this like mandating that builds only pull from
+approved registries, that certain steps are always signed by specific keys, or that no unexpected
+processes ran, [Witness policy verification](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)
+and frameworks like [SLSA](https://slsa.dev/) build opinionated security rules on top of in-toto
+attestations. SBOMit can be used alongside SLSA compliance scoring to give a
+complete picture of both what is in the software and how it was produced.
+
+---
+
+## What's the difference between signing an SBOM and using SBOMit?
+
+Signing an SBOM provides **integrity** giving guarantee that you know the document hasn't been tampered with since it
+was signed. The content may have been wrong or incomplete to
+begin with, and you are trusting a single party's assertion about the software at a single point in
+time. If the signing key is compromised, or if the signer made errors, the signed SBOM is
+worthless.
+
+With SBOMit and Witness, each attestation is signed **at the time the build step runs**, by the
+process performing it. You are not trusting one party's after-the-fact assertion, instead you have
+independent, cryptographic evidence from every step of the supply chain. Accidental inaccuracies
+(a step that was skipped, a dependency that was quietly swapped) are detectable because they break
+the attestation chain. Deliberate tampering is significantly harder to hide.

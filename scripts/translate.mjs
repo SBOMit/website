@@ -48,7 +48,7 @@ const SOURCE_FILES = [
   "_index.md",
   "faq.md",
   "community.md",
-  "documentation.md",
+  "getting-started.md",
 ];
 
 const CACHE_PATH = join(__dirname, ".translate-cache.json");
@@ -83,7 +83,10 @@ const PROTECTED_TERMS = [
   "SBOM",
   "SLSA",
   "FRSCA",
+  "CycloneDX",
+  "Witness",
   "metadata",
+  "SPDX",
 ].sort((a, b) => b.length - a.length);
 
 function sha256(text) {
@@ -92,6 +95,24 @@ function sha256(text) {
 
 function cacheKey(text) {
   return sha256(`${CACHE_VERSION}:${text}`);
+}
+
+/**
+ * Hide HTML comments from DeepL (XML tag handling breaks on <!-- -->).
+ * Restored after translation.
+ */
+function maskHtmlComments(text) {
+  const vault = [];
+  const masked = text.replace(/<!--[\s\S]*?-->/g, (match) => {
+    const id = vault.length;
+    vault.push(match);
+    return `\n\n⟦C${id}⟧\n\n`;
+  });
+  return { text: masked, vault };
+}
+
+function unmaskHtmlComments(text, vault) {
+  return text.replace(/⟦\s*C(\d+)\s*⟧/g, (_, id) => vault[Number(id)] ?? "");
 }
 
 /**
@@ -252,6 +273,16 @@ function isCodeBlock(block) {
   return /^```/.test(block.trimStart());
 }
 
+/** Leave Hugo shortcodes untouched (e.g. figure src paths). */
+function isHugoShortcode(block) {
+  return /^\{\{[<%]/.test(block.trimStart());
+}
+
+/** Comment placeholders must not be sent to DeepL. */
+function isCommentPlaceholder(block) {
+  return /^⟦C\d+⟧$/.test(block.trim());
+}
+
 function slugFromFilename(name) {
   // _index.md → home; faq.md → faq
   const base = basename(name, ".md");
@@ -269,6 +300,9 @@ function buildEnglishFrontMatter(fm, translationKey) {
   lines.push(`translationKey: "${translationKey}"`);
   if (fm.ShowToc !== undefined) {
     lines.push(`ShowToc: ${fm.ShowToc}`);
+  }
+  if (fm.TocOpen !== undefined) {
+    lines.push(`TocOpen: ${fm.TocOpen}`);
   }
   lines.push("---", "");
   return lines.join("\n");
@@ -298,6 +332,9 @@ function buildFrontMatter(fm, lang, translationKey) {
   ];
   if (showToc !== undefined) {
     lines.push(`ShowToc: ${showToc}`);
+  }
+  if (fm.TocOpen !== undefined) {
+    lines.push(`TocOpen: ${fm.TocOpen}`);
   }
   lines.push("---", "");
   return lines.join("\n");
@@ -330,7 +367,8 @@ async function translateFile(relPath, cache, stats) {
   }
   ensureEnglishTranslationKey(relPath);
   const raw = readFileSync(abs, "utf8");
-  const { fm, body } = parseFrontMatter(raw);
+  const { fm, body: bodyRaw } = parseFrontMatter(raw);
+  const { text: body, vault: commentVault } = maskHtmlComments(bodyRaw);
   const translationKey = slugFromFilename(relPath);
   const blocks = splitBlocks(body);
 
@@ -359,7 +397,11 @@ async function translateFile(relPath, cache, stats) {
     }
 
     for (const block of blocks) {
-      if (isCodeBlock(block)) {
+      if (
+        isCodeBlock(block) ||
+        isHugoShortcode(block) ||
+        isCommentPlaceholder(block)
+      ) {
         outBlocks.push(block);
         jobs.push({ kind: "block", text: block, hash: null, skip: true });
         continue;
@@ -415,7 +457,8 @@ async function translateFile(relPath, cache, stats) {
       title: titleTranslated,
     };
     // Rebuild outBlocks from jobs that aren't skip-filled... we already filled outBlocks
-    const bodyOut = outBlocks.join("\n\n") + "\n";
+    const bodyOut =
+      unmaskHtmlComments(outBlocks.join("\n\n") + "\n", commentVault);
     const header = buildFrontMatter(fmOut, hugoLang, translationKey);
     const outName =
       relPath === "_index.md"

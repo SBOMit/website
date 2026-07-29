@@ -2,56 +2,128 @@
 author: "SBOMit Maintainers"
 title: "Preguntas frecuentes"
 translationKey: "faq"
-ShowToc: false
+ShowToc: true
+TocOpen: false
 ---
-## ¿Qué es «SBOMit»?
+## ¿Por qué necesitamos un «SBOMs» preciso?
 
-SBOMit Es el nombre del proyecto que gestiona el formato de especificación «SBOMit». Un documento «SBOMit» es, en la práctica, un «SBOM», pero con información de verificación adicional que se generó en el momento en que se creó la cadena de suministro. Esta información de verificación, que utiliza in-toto, attestations y layouts, puede ser validada por una parte para obtener un alto grado de garantía sobre el software.
+Cuando [Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) se dio a conocer en diciembre
+de 2021, el número de sistemas expuestos se disparó de 40 000 a 830 000 en menos de 72 horas. Log4j estaba
+oculto como una dependencia transitiva, y la mayoría de los equipos no tenían forma de saber si lo estaban ejecutando ni dónde. La respuesta ante el incidente se convirtió en un proyecto de búsqueda a escala de toda la organización.
 
-## ¿Qué contiene un documento «SBOMit» y por qué?
+{{< figure src="/images/log4shell-growth.png" alt="Log4Shell affected systems grew from 40,000 to 830,000 in 72 hours" caption="Affected systems in the 72 hours following the Log4Shell outbreak." >}}
 
-Un documento «SBOMit» es un documento firmado que consta de varios componentes diferentes.  
+Log4Shell dejó claro el interés por la gestión de la información sobre el software (SBOMs): si se dispusiera de un inventario completo y preciso de todos los
+componentes del software, se podría responder a la pregunta «¿nos afecta?» en cuestión de minutos. Desde entonces, la gestión de la información sobre el software (SBOMs) se ha
+convertido en una obligación en virtud de decretos ejecutivos, requisitos de contratación pública y marcos normativos del sector. 
+La cuestión ahora es si los «SBOMs» que se generan son lo suficientemente precisos como para utilizarlos realmente y,
+para la mayoría de las organizaciones actuales, no lo son. Cuando se produzca el próximo Log4Shell, ¿responderá tu «SBOM» a la pregunta y confias en él?
 
-En primer lugar, contiene una serie de archivos in-toto attestations que se generaron durante el desarrollo del software descrito. Esto incluye información detallada sobre las diferentes etapas de la cadena de suministro del software, como el sistema de control de versiones, el proceso de compilación, las pruebas unitarias, las dependencias utilizadas, el fuzzing, las comprobaciones de cumplimiento de licencias, el empaquetado, etc.  Por ejemplo, el sistema de compilación utilizado para compilar el software en SBOM cuenta con in-toto metadata, donde figuran los nombres y los hash seguros de los archivos extraídos del sistema de control de versiones (VCS) para su compilación, los nombres y los hash seguros de los archivos creados durante la compilación, una serie de datos sobre el compilador y una firma generada por una clave privada en poder del compilador.
+---
 
-Esta información attestation puede utilizarse en coordinación con el segundo punto del documento SBOMit: un in-toto layout. El in-toto layout está firmado por el responsable del proyecto y describe cómo debe ser una attestation metadata válida para el proyecto. El layout especifica las claves privadas de las partes que llevan a cabo el attestations, así como la forma en que se interconectan los pasos.  Por ejemplo, el VCS debe tener una etiqueta git firmada, sobre la que luego opera el sistema de compilación.  Los archivos compilados por el sistema de compilación deben ser los que se han sometido a las pruebas unitarias, las cuales deben haber superado con éxito.   Es importante destacar que un «in-toto» (layout) proporciona una política legible por máquina que puede validar el «in-toto» (attestations) para garantizar que se han seguido todos esos pasos, en el orden correcto, sobre los elementos adecuados y sin que se haya añadido, omitido ni eliminado nada.
+## ¿Qué es lo que no puede ver tu gestor de paquetes o tu manifiesto?
 
-El elemento final que siempre aparece en el documento SBOMit es la información complementaria SBOM. Esta información, junto con in-toto, attestations y in-toto, layout, puede utilizarse para generar un SBOM real en diversos formatos. La información complementaria SBOM puede incluir datos como el nombre de la empresa u otra información que no figura en in-toto, pero que es conveniente incluir en el SBOM resultante.  De este modo, un documento SBOM generado a partir de un documento SBOMit puede incluir información complementaria que no formaba parte del proceso in-toto.
+Más de lo que cabría esperar. Hemos analizado las 1.000 imágenes más populares basadas en Debian de Docker Hub y hemos descubierto que
+un porcentaje significativo de los archivos de muchas imágenes (en algunos casos, entre el 40 % y el 100 %) no puede atribuirse a ningún
+gestor de paquetes.
 
-También existe una forma de añadir un archivo «addendums» a un documento «SBOMit», que se describirá más adelante.
+{{< figure src="/images/dark-matter-dockerhub.png" alt="Distribution of untracked files across top 1,000 Docker Hub images" caption="Distribution of files unaccounted for by the package manager across the top 1,000 Debian-based Docker Hub images." >}}
 
-## ¿Cuáles son las ventajas de un documento «SBOMit» frente al uso de una herramienta de generación «SBOM» que analiza el software?
+Se trata de archivos reales, cargados en tiempo de ejecución, potencialmente vulnerables e invisibles para cualquier herramienta de SBOM
+que utilice el gestor de paquetes metadata. Nuestra investigación ha detectado entre ellos vulnerabilidades CVE explotables:
 
-Las herramientas de análisis, por su propia naturaleza, examinan un programa y tratan de determinar qué ocurrió anteriormente. Por su propia naturaleza, son imperfectas, ya que utilizan información incompleta para intentar reconstruir lo que ocurrió en el pasado. La experiencia práctica ha demostrado que diferentes herramientas de análisis ofrecen resultados muy dispares para un mismo programa.  
+- **CVE-2025-32754** (`jenkins/ssh-agent`) — Las claves SSH se generan en el momento de la compilación de la imagen, por lo que todos los
+  contenedores derivados de dicha imagen comparten las mismas claves. Un atacante puede conectarse a un contenedor de compilación
+, leer el secreto de compilación y marcharse sin dejar rastro.
+- **CVE-2025-32111** (`acme.sh`) — Se filtró un secreto de compilación durante el proceso de compilación. Un atacante
+  que dispusiera de este secreto podría sustituir un cliente de Let's Encrypt de uso generalizado y llevar a cabo ataques de tipo «man-in-the-middle»
+  sobre una parte significativa del tráfico de Internet.
 
-Las secciones «in-toto» (
+Un escáner que se ejecutara sobre la imagen final no las detectaría. SBOMit las captura porque
+Witness supervisa la compilación a medida que se lleva a cabo.
 
-## ¿Cuáles son las ventajas de un documento «SBOMit» frente a la simple firma de un «SBOM»?
+---
 
-Un «SBOM» firmado es una declaración firmada por una persona que posee la clave de firma de una organización y en la que se afirma que el «SBOM» es correcto. Si la clave es objeto de un robo, o si la parte que firma el «SBOM» se equivoca respecto a cómo se ha creado el software, entonces el «SBOM» será incorrecto.
+## ¿Qué son in-toto, Witness y attestations?
 
-Un documento «SBOMit» contiene información metadata firmada criptográficamente sobre todos los pasos que se han seguido para crear el software y describe la política que debe respetarse.  Es mucho más difícil que pasen desapercibidas imprecisiones accidentales, como saltarse un paso (lo cual ha sido un problema habitual), o que se produzcan acciones maliciosas.  in-toto también ofrece una mayor capacidad para recuperarse de forma segura tras un ataque y para detectar y contrarrestar las acciones maliciosas de una parte dentro de una organización.
+**[in-toto](https://in-toto.io/)** es un marco de trabajo de la CNCF destinado a garantizar la seguridad de las cadenas de suministro de software. Define
+un estándar para registrar y verificar los pasos que conllevan la creación de software, como quién realizó
+cada paso, sobre qué archivos se actuó y cuáles fueron los resultados. Cada paso se registra como una
+declaración firmada y a prueba de manipulaciones sobre lo que ocurrió, firmada por la parte que lo llevó a cabo.
 
-Por poner un ejemplo, un certificado de autenticación (SBOM) hoy en día se parece mucho a la lista de ingredientes que aparece en un producto. Sin embargo, en la práctica, esta información suele ser inexacta, podría ser modificada por alguien malintencionado y no está verificada. Firmar un certificado de autenticación (SBOM) ayuda a evitar que sea modificado por alguien malintencionado, de modo que sabes que la lista de ingredientes que recibes ha sido aprobada por una empresa concreta.  Un documento de «SBOMit» (Declaración de conformidad) también describe con detalle el proceso de fabricación del producto e incluye «metadata» y las firmas de todas las partes implicadas, incluida la verificación de que las claves utilizadas estaban vigentes en ese momento.  Por lo tanto, en el caso de un documento de «SBOMit», se tiene un alto grado de garantía de que se han seguido las políticas y procedimientos adecuados.
+**[Witness](https://github.com/in-toto/witness)** es una implementación de in-toto que integra
+tu proceso de compilación para generar automáticamente estos attestations. Solo tienes que envolver tu comando de compilación con
+`Witness run` y este registrará una colección firmada de attestation para ese paso.
+Witness fue creado por TestifySec y donado al ecosistema in-toto de la CNCF.
 
-Para obtener más información sobre este tema, consulta la sección [¿Qué ventajas ofrece in-toto?](https://in-toto.io/in-toto/) en la página web in-toto.
+**Los attestations** son la primitiva básica. Cada uno de ellos es un registro con signo de un paso de compilación, que contiene:
 
-## ¿Qué pasaría si la cadena de suministro de un software incluyera pasos poco seguros?  
+| attestation | Capturas |
+|---|---|
+| `material` | Archivos de entrada y sus hash (lo que se introdujo) |
+| `ejecución-de-comandos` | Comandos ejecutados, archivos abiertos, procesos generados |
+| `producto` | Archivos de salida y sus hash (lo que se obtuvo) |
+| `entorno` | Sistema operativo, entorno de ejecución, versiones de las herramientas |
+| `rastreo-de-red` | Todas las conexiones de red salientes durante el paso |
 
-in-toto attestations no sustituyen a la implementación de medidas de seguridad adecuadas en la cadena de suministro de software. Por ejemplo, si utilizas un proceso inseguro de compilación de software que simplemente descarga y compila el software desde un sitio web, in-toto y layouts pueden registrar esta acción insegura y verificar el archivo firmado attestations, lo que indica que has realizado dicha acción insegura.  
+Dado que cada attestation se firma en el momento en que se ejecuta el paso, el historial de compilación es
+verificable criptográficamente.
 
-Por eso, proyectos como SLSA y FRSCA se han diseñado como un conjunto de normas con un enfoque concreto que se suman a los pasos descritos en in-toto. En ellos se especifican qué medidas son más importantes para la seguridad de la cadena de suministro de software y se exigen determinadas acciones.  
+Para obtener más información sobre este tema, consulta [¿Qué ventajas ofrece in-toto?](https://in-toto.io/in-toto/) en la página web in-toto.
 
-Estos proyectos resuelven diferentes problemas a distintos niveles.  in-toto permite registrar información sobre tus pasos, garantizar que se apliquen las políticas correspondientes, gestionar la confianza en las claves, etc.  Marcos como SLSA y FRSCA utilizan in-toto como mecanismo para registrar y hacer cumplir un conjunto específico de políticas que dan lugar a cadenas de suministro más seguras.  
+---
 
-Se están realizando esfuerzos para que las herramientas automatizadas de SLSA y FRSCA funcionen con in-toto y layouts, y validen el cumplimiento de los requisitos. Cuando estas herramientas alcancen la madurez, podrán integrarse para analizar un documento de SBOMit y proporcionar el nivel de puntuación adecuado para la cadena de suministro de software descrita en él. De este modo, un usuario podrá configurar su sistema para que solo acepte software de SLSA de nivel 4 o superior, que además cuente con un documento válido de SBOMit.
+## ¿Cómo funciona «SBOMit»?
 
-## ¿Qué ocurre si es necesario modificar un documento de «SBOMit» con el paso del tiempo? Por ejemplo, para afirmar que no presenta una determinada vulnerabilidad explotable, o para añadir posteriormente información complementaria que no era necesaria en el momento de su creación, etc.
+La herramienta «SBOMit» lee un archivo Witness attestation y:
 
-Un documento SBOMit puede contener una serie de «addendums» a posteriori. Estos se añaden con posterioridad y deben ser firmados en última instancia por la clave maestra del documento original SBOMit. Sirven para modificar los distintos campos del documento SBOMit o para añadir información complementaria.  
+1. Analiza todos los tipos de «attestation» para obtener una visión completa de lo que ha ocurrido durante la compilación
+2. Ejecuta **resolutores de paquetes específicos para cada lenguaje** (Python, Go, Rust, JavaScript/pnpm) para asociar
+   las rutas de los archivos observadas con los nombres de los paquetes y sus versiones exactas
+3. Filtra los artefactos temporales o de caché y elimina las duplicadas en las referencias a paquetes
+4. Genera un **archivo SPDX** estándar (2.2/2.3) o un **archivo CycloneDX** (1.4/1.5) SBOM enriquecido con
+   los datos observados durante la compilación
 
-Utilizar addendums en lugar de crear un nuevo documento SBOMit tiene una ventaja. De esta forma, tanto el documento original como cualquier addendums serán verificables y el historial de estos cambios quedará recogido íntegramente en el documento SBOMit. Por lo tanto, addendums es el modelo recomendado para gestionar los cambios en un documento SBOMit.
+El resultado es un archivo «SBOM» que refleja lo que realmente se ha instalado y utilizado, incluidas las versiones exactas, las bibliotecas nativas y los archivos que no detectan los gestores de paquetes. Consulta la [Guía de introducción](/getting-started) para conocer cómo instalarlo y utilizarlo.
 
-## ¿Puedo obtener un documento «SBOM» a partir de un documento «SBOMit»?
+---
 
-¡Sí! Se están desarrollando varias herramientas que permitirán obtener un documento «SBOM» a partir de un documento «SBOMit». Puedes obtener un documento «SBOMs» en diversos formatos utilizando diferentes herramientas.
+## ¿Qué ocurre si mi cadena de suministro presenta eslabones inseguros?
+
+attestations no sustituyen a unos procesos de compilación seguros, sino que constituyen un registro de lo que
+ha ocurrido, no una garantía de que lo ocurrido fuera seguro. Si tu compilación descarga un script de
+Internet y lo ejecuta, Witness certificará fielmente que esto ha ocurrido.
+
+Lo que te ofrecen attestations es **visibilidad y responsabilidad**. El comando `network-trace` attestation
+mostrará esa conexión saliente inesperada. El comando `command-run` attestation registrará el
+proceso que la realizó. No se puede ocultar nada a posteriori, ya que los archivos attestations se firman en
+el momento de la compilación.
+
+Para los equipos que deseen aplicar políticas adicionales, como exigir que las compilaciones solo obtengan código de
+registros aprobados, que determinados pasos estén siempre firmados con claves específicas o que no se ejecuten
+procesos inesperados, [Witness
+la verificación de políticas](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)
+y marcos como [SLSA
+](https://slsa.dev/) establecen reglas de seguridad bien definidas basadas enin-toto
+
+attestations
+.SBOMit
+puede utilizarse junto con la puntuación de cumplimiento deSLSA
+para ofrecer una
+visión completa tanto de lo que contiene el software como de cómo se ha producido.
+
+---
+
+## ¿Cuál es la diferencia entre firmar un «SBOM» y utilizar «SBOMit»?
+
+La firma de un SBOM proporciona **integridad**, lo que garantiza que el documento no ha sido alterado desde que
+se firmó. El contenido podría haber sido erróneo o incompleto desde
+el principio, y usted está confiando en la afirmación de una sola parte sobre el software en un momento concreto
+. Si la clave de firma se ve comprometida, o si el firmante cometió errores, el SBOM firmado
+no tiene ningún valor.
+
+Con SBOMit y Witness, cada attestation se firma **en el momento en que se ejecuta el paso de compilación**, por el
+proceso que lo lleva a cabo. No se confía en la afirmación a posteriori de una sola parte, sino que se dispone de
+pruebas criptográficas independientes de cada paso de la cadena de suministro. Las imprecisiones accidentales
+(un paso que se ha omitido, una dependencia que se ha sustituido sin que se haya notado) son detectables porque rompen
+la cadena de attestation. La manipulación deliberada es mucho más difícil de ocultar.

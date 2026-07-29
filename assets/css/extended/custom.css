@@ -76,6 +76,22 @@
   }
 }
 
+/* Homepage equation: SBOMit = SBOM + [in-toto logo] in-toto */
+.home-equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em;
+  line-height: 1.25;
+}
+
+.home-equation__intoto {
+  height: 1.15em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* --- Permanent socials strip --- */
 .site-social-strip {
   display: flex;

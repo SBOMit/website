@@ -3,6 +3,7 @@ author: "SBOMit Maintainers"
 title: "Documentation"
 translationKey: "documentation"
 ShowToc: true
+draft: true
 ---
 
 Documentation for the SBOMit specification, tooling, and reference

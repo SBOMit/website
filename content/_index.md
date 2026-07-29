@@ -1,10 +1,12 @@
 ---
-title: "Software Bill of Materials on in-toto (SBOMit)"
+title: "SBOMit = SBOM + in-toto"
 translationKey: "home"
 ---
 
-The SBOMit specification is a SBOM format independent method for attesting components with
-additional verification information. These attestation are generated at the time the supply chain was generated.
+An SBOM tells you what's in the software.
 
-This verification information, which uses in-toto attestations and layouts, is able to be validated by
-a party to get a high degree of assurances about the software.
+SBOMit helps you verify how it got there.
+
+It adds in-toto attestations as the supply chain runs.
+
+Anyone who receives your software can check these attestations and get strong assurance about how it was built.

@@ -2,7 +2,14 @@
 {{- if and .IsHome .Content }}
 <article class="first-entry home-info">
     <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
+        {{- $intotoLogo := resources.Get "new.svg" }}
+        <h1 class="home-equation">
+            SBOMit = SBOM +
+            {{- with $intotoLogo }}
+            <img class="home-equation__intoto" src="{{ .RelPermalink }}" alt="" width="40" height="40">
+            {{- end }}
+            in-toto
+        </h1>
     </header>
     <div class="entry-content md-content">
         {{ .Content }}

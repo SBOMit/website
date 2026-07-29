@@ -94,7 +94,7 @@ params:
 
   socialIcons:
     - name: github
-      url: "https://github.com/SBOMit/specification"
+      url: "https://github.com/SBOMit/sbomit"
     - name: slack
       # OpenSSF Slack join; Community page lists #sbomit and #sig-sbom-everywhere.
       url: "https://slack.openssf.org/"
@@ -126,9 +126,9 @@ menu:
       name: Community
       url: /community/
       weight: 20
-    - identifier: documentation
-      name: Documentation
-      url: /documentation/
+    - identifier: gettingstarted
+      name: Getting Started
+      url: /getting-started/
       weight: 30
     - identifier: faq
       name: FAQ

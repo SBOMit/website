@@ -2,56 +2,129 @@
 author: "SBOMit Maintainers"
 title: "常见问题解答"
 translationKey: "faq"
-ShowToc: false
+ShowToc: true
+TocOpen: false
 ---
-## 什么是SBOMit？
+## 为什么我们需要精确的SBOMs？
 
-SBOMit 这是管理“SBOMit”规范格式的项目名称。SBOMit文档实质上就是SBOM，只是额外添加了在生成供应链时生成的验证信息。该验证信息采用in-toto、attestations和layouts，相关方可对其进行验证，从而获得关于该软件的高可信度保证。
+2021年12月，当[Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)爆发时，
+在不到72小时内，受影响的系统数量从4万激增至83万。 Log4j
+作为传递依赖被深埋在代码中，大多数团队根本无从知晓是否在运行该组件，更遑论其具体位置。事件响应工作因此演变为一项涉及整个组织的排查工程。
 
-## 《SBOMit》文件包含哪些内容？原因是什么？
+{{< figure src="/images/log4shell-growth.png" alt="Log4Shell affected systems grew from 40,000 to 830,000 in 72 hours" caption="Affected systems in the 72 hours following the Log4Shell outbreak." >}}
 
-SBOMit文档是一份经过签名的文档，由几个不同的组成部分构成。  
+Log4Shell 事件清楚地证明了软件资产清点（SBOMs）的重要性：如果你拥有软件中每个
+组件的完整、准确的清单，就能在几分钟内回答“我们是否受到影响？”这个问题。自那以后，软件资产清点
+已成为行政命令、采购要求和行业框架所强制要求的内容。 
+现在的问题是，生成的 SBOMs 是否足够准确以供实际使用，
+而对于当今大多数组织而言，答案是否定的。当下一次 Log4Shell 漏洞出现时，您的 SBOM 能否解答这个问题？您是否信任它？
 
-首先，它包含了一系列在开发所述软件过程中生成的 in-toto attestations。其中包含关于软件供应链各阶段的详细信息，包括版本控制系统、构建流程、单元测试、所用依赖项、模糊测试、许可证合规性检查、打包等。  例如，用于在 SBOM 中编译软件的构建系统包含 in-toto metadata，其中记录了从版本控制系统（VCS）中提取以供编译的文件的名称和安全哈希值、编译过程中生成的文件的名称和安全哈希值、关于编译器的一系列信息，以及由编译器持有的私钥所签署的签名。
+---
 
-此 attestation 中的信息可与 SBOMit 文档中的第二项配合使用：即 in-toto layout。该 in-toto layout 由项目所有者签署，并描述了该项目有效的 attestation metadata 应具备的特征。 layout 指定了执行 attestations 的各方的私钥，以及各步骤之间的衔接方式。例如，版本控制系统（VCS）必须拥有一个已签名的 Git 标签，构建系统随后将基于该标签进行操作。由构建系统编译的文件必须是已通过单元测试的文件，且这些测试必须已通过。   重要的是，in-toto layout 提供了一份机器可读的策略，该策略可验证 in-toto attestations，以确保所有步骤均按正确顺序、针对正确对象执行，且未被添加、跳过或删除任何内容。
+## 你的包管理器/清单无法识别什么？
 
-SBOMit文档中始终出现的最后一项是补充信息SBOM。该信息可与in-toto、attestations以及in-toto layout结合使用，以生成多种格式的实际SBOM。补充信息SBOM可能包含公司名称或其他未被in-toto收录、但希望纳入最终生成的SBOM中的信息。  通过这种方式，由SBOMit文档生成的SBOM，可以包含in-toto处理过程中未涉及的补充信息。
+超乎你的想象。我们分析了 Docker Hub 上排名前 1,000 的基于 Debian 的镜像，发现
+许多镜像中相当大比例的文件（有时高达 40% 至 100%）根本无法归因于任何
+软件包管理器。
 
-此外，还有一种方法可以在SBOMit文档中添加addendums，相关内容将在后面介绍。
+{{< figure src="/images/dark-matter-dockerhub.png" alt="Distribution of untracked files across top 1,000 Docker Hub images" caption="Distribution of files unaccounted for by the package manager across the top 1,000 Debian-based Docker Hub images." >}}
 
-## 与使用SBOM生成工具（该工具会扫描软件）相比，SBOMit文档有哪些优势？
+这些是真实文件，在运行时加载，可能存在安全漏洞，且对任何依赖于包管理器 metadata 的 SBOM 工具而言都是不可见的。
+我们的研究发现其中存在可被利用的 CVE：
 
-扫描工具的本质是分析一段软件代码，进而试图推断此前发生过什么。由于其本质，这些工具难免存在缺陷，因为它们是利用不完整的信息来尝试还原过去发生的情况。实际应用表明，针对同一款软件，不同的扫描工具得出的结果可能大相径庭。  
+- **CVE-2025-32754**（`jenkins/ssh-agent`）——SSH 密钥是在镜像构建时生成的，因此每个
+  基于该镜像构建的容器都会使用相同的密钥。 攻击者可以连接到构建
+  容器，读取构建密钥，并悄无声息地离开。
+- **CVE-2025-32111** (`acme.sh`) — 构建过程中泄露了构建密钥。 攻击者
+  若掌握此密钥，便可替换广泛使用的 Let's Encrypt 客户端，并对互联网流量中的
+  相当大一部分实施中间人
+  攻击。
 
-SBOMit 文档中的 in-toto attestation 部分是在软件通过软件供应链进行处理时生成的。因此，这些信息会更加准确，因为 in-toto attestations 会在软件产品制造过程中收集详细信息。这使得 SBOMit 文档从本质上来说更加准确。
+如果使用扫描器对最终图像进行检查，是无法发现这些问题的。SBOMit 能捕获这些问题，因为
+Witness 会实时监控构建过程。
 
-## 与直接签署《SBOM》相比，SBOMit文件有哪些优势？
+---
 
-一个经过签名的 SBOM 是由某组织中持有签名密钥的人员签署的声明，表明 SBOM 内容准确无误。如果密钥被盗，或者签署 SBOM 的方对软件的制作方式存在误解，那么 SBOM 的内容将不准确。
+## 什么是 in-toto、Witness 和 attestations？
 
-SBOMit文档包含经过加密签名的metadata，其中记录了软件开发过程中的所有步骤，并描述了必须遵循的政策。  像遗漏某个步骤（历史上这曾是一个问题）这样的无意疏漏，或是恶意行为，都更难不被察觉。in-toto 还提供了更强大的能力，既能安全地从系统遭入侵中恢复，又能检测并抵御组织内部某一方的恶意行为。
+**[in-toto](https://in-toto.io/)** 是 CNCF 推出的一套用于保障软件供应链安全的框架。它
+定义了一项标准，用于记录和验证软件开发过程中的各个步骤，例如谁执行了
+每个步骤、操作了哪些文件以及产生了哪些输出结果。 每个步骤都会被记录为一份
+关于该步骤执行情况的、经过签名的防篡改声明，并由执行该步骤的一方进行签名。
 
-打个比方，如今的“SBOM”就如同产品上的成分表。只是实际上，这些信息通常并不准确，可能会被恶意方篡改，且未经核实。对“SBOM”进行签名有助于防止其被恶意方篡改，因此您可以确信所获得的成分表已获得特定公司的批准。  SBOMit文档还会详细描述产品的制造过程，并包含所有相关方的metadata和签名，其中包括对所用密钥在当时是否有效的验证。因此，对于SBOMit文档，您可以高度确信相关政策和程序已得到正确遵循。
+**[Witness](https://github.com/in-toto/witness)** 是一个 in-toto 实现，它会对
+您的构建管道进行插桩，以自动生成这些 attestations。您只需将构建命令包裹在
+`Witness run` 中，它就会为该步骤记录一个已签名的 attestation 集合。
+Witness 由 TestifySec 创建，并捐赠给了 CNCF in-toto 生态系统。
+
+**attestations** 是核心基本单元。每个都是一个构建步骤的有符号记录，包含：
+
+| attestation | 捕获内容 |
+|---|---|
+| `material` | 输入文件及其哈希值（输入内容） |
+| `command-run` | 执行的命令、打开的文件、启动的进程 |
+| `product` | 输出文件及其哈希值（处理结果） |
+| `environment` | 操作系统、运行时环境、工具版本 |
+| `network-trace` | 该步骤期间的所有出站网络连接 |
+
+由于每个attestation都在步骤运行时进行签名，因此构建历史记录
+可通过加密方式进行验证。
 
 有关此主题的更多信息，请参阅in-toto网站上的[in-toto有哪些优势](https://in-toto.io/in-toto/)。
 
-## 如果软件供应链中存在不安全的环节，会怎样？  
+---
 
-in-toto attestations 不能替代在软件供应链中采取适当的安全措施。例如，如果您使用一种不安全的软件构建流程，仅通过 curl 命令从网站下载并构建软件，in-toto layouts 可以列出这一不安全操作，并验证签名的 attestations，表明您执行了该不安全操作。  
+## SBOMit 是如何运作的？
 
-正因如此，像 SLSA 和 FRSCA 这样的项目，才是在 in-toto 步骤的基础上构建的一套具有明确立场的规则集。它们明确指出了哪些措施对软件供应链安全更为重要，并强制要求采取某些措施。  
+`SBOMit` 工具会读取一个 Witness attestation 文件，并：
 
-这些项目在不同层面上解决着不同的问题。in-toto 允许您记录有关操作步骤的信息、确保相关策略得到执行、处理密钥信任等问题。SLSA 和 FRSCA 等框架则利用 in-toto 作为一种机制，用于记录和执行一组特定的策略，从而构建更安全的供应链。  
+1. 解析所有 attestation 类型，以全面了解构建过程中发生的情况
+2. 运行 **特定语言的包解析器**（Python、Go、Rust、JavaScript/pnpm），将
+   观察到的文件路径映射回包名和确切版本
+3. 过滤掉临时/缓存构建产物，并对包引用进行去重
+4. 生成一个标准的 **SPDX**（2.2/2.3）或 **CycloneDX**（1.4/1.5）SBOM，其中包含
+   构建过程中观察到的数据
 
-目前正在努力使针对 SLSA 和 FRSCA 的自动化工具能够在 in-toto layouts 上运行，并验证合规性。当这些工具成熟后，即可将其集成以解析 SBOMit 文档，并为其中描述的软件供应链提供相应的评分等级。因此，用户随后可配置其系统，仅接受 SLSA 评分等级为 4 级或更高的软件，且该软件还需具备有效的 SBOMit 文档。
+最终生成的SBOM文件将如实反映实际安装和使用的内容，包括准确的版本信息、原生库以及包管理器无法检测到的文件。有关安装和使用方法，请参阅[入门指南](/getting-started)。
 
-## 如果一份《SBOMit》文档需要随着时间的推移进行修改，该怎么办？例如，声明该文档不存在某项可被利用的漏洞，或在后续添加创建时未涉及的补充信息等。
+---
 
-一份SBOMit文档可能包含一系列事后添加的addendums。这些证书是在事后添加的，最终必须由原始SBOMit文档的主密钥进行签名。它们用于修改SBOMit文档中的各个字段或添加补充信息。  
+## 如果我的供应链中存在不安全的环节怎么办？
 
-使用addendums而非创建新的SBOMit文档具有一定优势。这样一来，原始文档和任何addendums都将可验证，且这些更改的历史记录均包含在SBOMit文档中。因此，addendums是处理SBOMit文档更改的推荐模式。
+attestations 这些并不能替代安全的构建流程，而只是对发生过什么的
+记录，并非对所发生过程的安全性的保证。如果您的构建过程从
+互联网上下载了一个脚本并执行了它，Witness 将如实记录这一操作。
 
-## 我能否从一个 SBOMit 文档中生成一个 SBOM 文档？
+attestations 为您提供的正是 **可视性和可追溯性**。`network-trace` attestation
+将显示该意外的出站连接。`command-run` attestation 将记录
+发起该连接的进程。事后无法隐瞒任何信息，因为 attestations 在
+构建时已进行签名。
 
-没错！目前正在开发多种工具，这些工具能够从 SBOMit 文档中生成 SBOM 文件。您可以通过使用不同的工具，以多种不同的格式获取 SBOMs 文件。
+对于希望在此基础上实施相关策略的团队，例如强制要求构建仅从
+已批准的注册表中拉取代码、确保特定步骤始终由特定密钥签名，或者确保没有意外
+进程运行，[Witness
+策略验证](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)
+以及诸如 [SLSA
+](https://slsa.dev/) 之类的框架，可在in-toto
+
+attestations
+的基础上构建具有明确立场的安全规则。SBOMit
+可与SLSA
+的合规性评分结合使用，从而全面
+展现软件的组成内容及其构建过程。
+
+---
+
+## 签署SBOM和使用SBOMit有什么区别？
+
+对SBOM进行签名可提供**完整性**，从而保证您确信该文档自
+签名以来未被篡改。 内容最初可能就存在错误或不完整，
+而您只是信任某一方在某个特定时间点
+对该软件所作的声明。如果签名密钥遭到泄露，或者签名者出现失误，那么已签名的 SBOM 文件
+便毫无价值。
+
+借助 SBOMit 和 Witness，每个 attestation 都会在 **构建步骤运行时**，由
+执行该步骤的进程进行签名。 您无需信任某一方事后提出的声明，而是拥有
+来自供应链每个环节的独立加密证据。意外的不准确之处
+（例如某个步骤被跳过，某个依赖项被悄然替换）是可以被检测到的，因为它们会破坏
+attestation链。而蓄意的篡改则要难得多。

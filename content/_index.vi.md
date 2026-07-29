@@ -1,10 +1,12 @@
 ---
 author: "SBOMit Maintainers"
-title: "Danh mục thành phần phần mềm trên in-toto (SBOMit)"
+title: "SBOMit = SBOM + in-toto"
 translationKey: "home"
 ---
-Tiêu chuẩn “SBOMit” là một phương pháp không phụ thuộc vào định dạng “SBOM” nhằm xác thực các thành phần kèm theo
-thông tin xác minh bổ sung. Các thông tin xác minh bổ sung này (attestation) được tạo ra tại thời điểm chuỗi cung ứng được thiết lập.
+Tài liệu mô tả tính năng (SBOM) sẽ cho bạn biết phần mềm này có những tính năng gì.
 
-Thông tin xác minh này, sử dụng các địa chỉ in-toto, attestations và layouts, có thể được một bên liên quan xác thực
-để đạt được mức độ đảm bảo cao về phần mềm.
+SBOMit giúp bạn xác minh xem nó đã đến đó như thế nào.
+
+Nó bổ sung in-toto attestations trong quá trình vận hành chuỗi cung ứng.
+
+Bất kỳ ai nhận được phần mềm của bạn đều có thể truy cập vào các liên kết này attestations để có được sự đảm bảo chắc chắn về cách phần mềm đó được phát triển.

@@ -1,10 +1,12 @@
 ---
 author: "SBOMit Maintainers"
-title: "in-toto 上的软件物料清单 (SBOMit)"
+title: "SBOMit = SBOM + in-toto"
 translationKey: "home"
 ---
-SBOMit规范是一种SBOM的、与格式无关的方法，用于通过
-附加验证信息对组件进行认证。这些attestation是在生成供应链时生成的。
+SBOM（软件说明书）会向您说明软件包含哪些内容。
 
-该验证信息使用了 in-toto、attestations 和 layouts，相关方可通过验证该信息，
-从而对该软件获得高度保证。
+SBOMit 可帮助您查明它是如何出现在那里的。
+
+随着供应链的运作，它会将 in-toto attestations 添加进去。
+
+任何获取您软件的人都可以查看这些 attestations，从而对软件的构建过程获得强有力的保证。

@@ -1078,5 +1078,383 @@
     "fr": "## Outillage",
     "zh": "## 工装",
     "vi": "## Dụng cụ gia công"
+  },
+  "8f85da85409e4e70622ce9e259942ffc8be78f4d78d4d0e93c36c91845463139": {
+    "es": "SBOMit = SBOM + in-toto",
+    "fr": "SBOMit = SBOM + in-toto",
+    "zh": "SBOMit = SBOM + in-toto",
+    "vi": "SBOMit = SBOM + in-toto"
+  },
+  "b7cc297fc66c60a49437f92525ccc1791f9cdd0a36fa961a0db27a0970fdc5e4": {
+    "es": "Un «SBOM» te indica qué incluye el software.",
+    "fr": "Un fichier «SBOM» vous indique le contenu du logiciel.",
+    "zh": "SBOM（软件说明书）会向您说明软件包含哪些内容。",
+    "vi": "Tài liệu mô tả tính năng (SBOM) sẽ cho bạn biết phần mềm này có những tính năng gì."
+  },
+  "66e09f72d974a897b5469258b3ffefac7514e907b4a33b4d5ce68ff78fab37c9": {
+    "es": "SBOMit te ayuda a averiguar cómo llegó allí.",
+    "fr": "SBOMit vous aide à déterminer comment il s'est retrouvé là.",
+    "zh": "SBOMit 可帮助您查明它是如何出现在那里的。",
+    "vi": "SBOMit giúp bạn xác minh xem nó đã đến đó như thế nào."
+  },
+  "3aa4acac2d32f41cea8839ec9b3a39e3370965b725ff791efb5336fd0701e73b": {
+    "es": "Añade in-toto attestations a medida que avanza la cadena de suministro.",
+    "fr": "Il ajoute in-toto attestations au fur et à mesure que la chaîne d'approvisionnement se déroule.",
+    "zh": "随着供应链的运作，它会将 in-toto attestations 添加进去。",
+    "vi": "Nó bổ sung in-toto attestations trong quá trình vận hành chuỗi cung ứng."
+  },
+  "a35e0a6bc43be9bf4fdd4dfaf192b70cfafd390edf615cdc5d64a90b0d9a41c2": {
+    "es": "Cualquier persona que reciba tu software puede consultar estos attestations y obtener una garantía sólida sobre cómo se ha desarrollado.",
+    "fr": "Toute personne qui reçoit votre logiciel peut consulter ces attestations et obtenir des garanties solides quant à la manière dont il a été développé.",
+    "zh": "任何获取您软件的人都可以查看这些 attestations，从而对软件的构建过程获得强有力的保证。",
+    "vi": "Bất kỳ ai nhận được phần mềm của bạn đều có thể truy cập vào các liên kết này attestations để có được sự đảm bảo chắc chắn về cách phần mềm đó được phát triển."
+  },
+  "d552bcbf3269f438f05678da7ae656628769de220651b8acdce327139f214bfd": {
+    "es": "## ¿Por qué necesitamos un «SBOMs» preciso?",
+    "fr": "## Pourquoi avons-nous besoin d'SBOMss précises ?",
+    "zh": "## 为什么我们需要精确的SBOMs？",
+    "vi": "## Tại sao chúng ta cần các số liệu thống kê chính xác về “SBOMs”?"
+  },
+  "b97ce83a2c0aef2cedf1c4169a7247afba0ac6cf308b172956f4c61bd6f90cf6": {
+    "es": "Cuando [Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) se dio a conocer en diciembre\nde 2021, el número de sistemas expuestos se disparó de 40 000 a 830 000 en menos de 72 horas. Log4j estaba\noculto como una dependencia transitiva, y la mayoría de los equipos no tenían forma de saber si lo estaban ejecutando ni dónde. La respuesta ante el incidente se convirtió en un proyecto de búsqueda a escala de toda la organización.",
+    "fr": "Lorsque la faille [Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) a été découverte en décembre\n2021, le nombre de systèmes exposés est passé de 40 000 à 830 000 en moins de 72 heures. Log4j était\nenfoui en tant que dépendance transitive, et la plupart des équipes n’avaient aucun moyen de savoir si elles l’utilisaient ni où. La gestion des incidents s’est transformée en un véritable projet d’exploration à l’échelle de l’organisation.",
+    "zh": "2021年12月，当[Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)爆发时，\n在不到72小时内，受影响的系统数量从4万激增至83万。 Log4j\n作为传递依赖被深埋在代码中，大多数团队根本无从知晓是否在运行该组件，更遑论其具体位置。事件响应工作因此演变为一项涉及整个组织的排查工程。",
+    "vi": "Khi lỗ hổng [Log4Shell (CVE-2021-44228)](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) bùng phát vào tháng 12\nnăm 2021, số lượng hệ thống bị ảnh hưởng đã tăng vọt từ 40.000 lên 830.000 chỉ trong vòng chưa đầy 72 giờ. Log4j đã\nbị ẩn đi dưới dạng một phụ thuộc gián tiếp, và hầu hết các nhóm không có cách nào để biết liệu họ có đang chạy nó hay không và ở đâu. Việc ứng phó sự cố đã biến thành một dự án rà soát trên toàn tổ chức."
+  },
+  "13a55743282b7e65fc95eabad0e8f99994806905addc3f44c2a86d9e82c570cc": {
+    "es": "Log4Shell dejó claro el interés por la gestión de la información sobre el software (SBOMs): si se dispusiera de un inventario completo y preciso de todos los\ncomponentes del software, se podría responder a la pregunta «¿nos afecta?» en cuestión de minutos. Desde entonces, la gestión de la información sobre el software (SBOMs) se ha\nconvertido en una obligación en virtud de decretos ejecutivos, requisitos de contratación pública y marcos normativos del sector. \nLa cuestión ahora es si los «SBOMs» que se generan son lo suficientemente precisos como para utilizarlos realmente y,\npara la mayoría de las organizaciones actuales, no lo son. Cuando se produzca el próximo Log4Shell, ¿responderá tu «SBOM» a la pregunta y confias en él?",
+    "fr": "Log4Shell a clairement démontré l’intérêt de l’SBOMs : si vous disposiez d’un inventaire complet et précis de chaque\ncomposant de vos logiciels, vous pourriez déterminer en quelques minutes si vous êtes concernés. Depuis lors, l’SBOMs a\nété rendue obligatoire par des décrets, des exigences en matière d’achats et des cadres réglementaires sectoriels. \nLa question est désormais de savoir si les SBOMss générées sont suffisamment précises pour être réellement exploitables et,\npour la plupart des organisations aujourd’hui, ce n’est pas le cas. Lorsque la prochaine faille de type Log4Shell se présentera, votre SBOM vous permettra-t-elle de répondre à cette question et lui faites-vous confiance ?",
+    "zh": "Log4Shell 事件清楚地证明了软件资产清点（SBOMs）的重要性：如果你拥有软件中每个\n组件的完整、准确的清单，就能在几分钟内回答“我们是否受到影响？”这个问题。自那以后，软件资产清点\n已成为行政命令、采购要求和行业框架所强制要求的内容。 \n现在的问题是，生成的 SBOMs 是否足够准确以供实际使用，\n而对于当今大多数组织而言，答案是否定的。当下一次 Log4Shell 漏洞出现时，您的 SBOM 能否解答这个问题？您是否信任它？",
+    "vi": "Log4Shell đã minh chứng rõ ràng cho tầm quan trọng của việc lập danh mục phần mềm (SBOMs): nếu bạn có một danh mục đầy đủ và chính xác về mọi\nthành phần trong phần mềm của mình, bạn có thể trả lời câu hỏi “chúng ta có bị ảnh hưởng không?” chỉ trong vài phút. Kể từ đó, việc lập danh mục phần mềm (SBOMs) đã\nđược quy định bắt buộc thông qua các sắc lệnh hành pháp, yêu cầu mua sắm và các khung tiêu chuẩn ngành. \nCâu hỏi hiện nay là liệu các bản danh mục thành phần phần mềm (SBOMs) đang được tạo ra có đủ chính xác để thực sự sử dụng hay không,\nvà đối với hầu hết các tổ chức hiện nay, câu trả lời là không. Khi lỗ hổng Log4Shell tiếp theo xuất hiện, liệu bản danh mục thành phần phần mềm (SBOM) của bạn có thể trả lời câu hỏi đó không, và bạn có tin tưởng vào nó không?"
+  },
+  "6afd034eedcdff569f638fdc51d066f9cdf1c4e814b46a438242bf59b005afa0": {
+    "es": "---",
+    "fr": "---",
+    "zh": "---",
+    "vi": "---"
+  },
+  "76b721af2645bf638f2d1ecc50ccda33172008c1bb14a0a534e54fb95332164a": {
+    "es": "## ¿Qué es lo que no puede ver tu gestor de paquetes o tu manifiesto?",
+    "fr": "## Qu'est-ce que votre gestionnaire de paquets ou votre manifeste ne peut pas détecter ?",
+    "zh": "## 你的包管理器/清单无法识别什么？",
+    "vi": "## Trình quản lý gói/tệp manifest của bạn không thể nhận diện được những gì?"
+  },
+  "23f72bb52a54922220f7235f50b0bd046d3067daf83ca55fd9d50fc2677e4e11": {
+    "es": "Más de lo que cabría esperar. Hemos analizado las 1.000 imágenes más populares basadas en Debian de Docker Hub y hemos descubierto que\nun porcentaje significativo de los archivos de muchas imágenes (en algunos casos, entre el 40 % y el 100 %) no puede atribuirse a ningún\ngestor de paquetes.",
+    "fr": "Plus que vous ne le pensez. Nous avons analysé les 1 000 images basées sur Debian les plus populaires sur Docker Hub et avons constaté qu’\nune part importante des fichiers contenus dans de nombreuses images (parfois entre 40 et 100 %) ne peut être attribuée à aucun\ngestionnaire de paquets.",
+    "zh": "超乎你的想象。我们分析了 Docker Hub 上排名前 1,000 的基于 Debian 的镜像，发现\n许多镜像中相当大比例的文件（有时高达 40% 至 100%）根本无法归因于任何\n软件包管理器。",
+    "vi": "Nhiều hơn bạn tưởng. Chúng tôi đã phân tích 1.000 hình ảnh dựa trên Debian hàng đầu trên Docker Hub và phát hiện ra rằng\nmột tỷ lệ đáng kể các tệp trong nhiều hình ảnh (đôi khi lên tới 40–100%) hoàn toàn không thể xác định được nguồn gốc từ bất kỳ\ntrình quản lý gói nào."
+  },
+  "a56ae012b03fffbe82d867e08accc50b3d8800c9a319f4e620609f6e07d00a22": {
+    "es": "Se trata de archivos reales, cargados en tiempo de ejecución, potencialmente vulnerables e invisibles para cualquier herramienta de SBOM\nque utilice el gestor de paquetes metadata. Nuestra investigación ha detectado entre ellos vulnerabilidades CVE explotables:",
+    "fr": "Il s'agit de fichiers réels, chargés lors de l'exécution, potentiellement vulnérables et invisibles pour tout outil d'SBOM\nqui s'appuie sur l'metadata du gestionnaire de paquets. Nos recherches ont permis de découvrir parmi eux des CVE exploitables :",
+    "zh": "这些是真实文件，在运行时加载，可能存在安全漏洞，且对任何依赖于包管理器 metadata 的 SBOM 工具而言都是不可见的。\n我们的研究发现其中存在可被利用的 CVE：",
+    "vi": "Đây là những tệp thực, được tải trong quá trình chạy, có khả năng bị lỗ hổng và không thể phát hiện được bởi bất kỳ công cụ SBOM nào\ndựa trên trình quản lý gói metadata. Nghiên cứu của chúng tôi đã phát hiện ra các lỗ hổng CVE có thể bị khai thác trong số đó:"
+  },
+  "9000c1fa672b4e014a9632ecd7e824d3652a4506612af513aef7eff5a00a249c": {
+    "es": "- **CVE-2025-32754** (`jenkins/ssh-agent`) — Las claves SSH se generan en el momento de la compilación de la imagen, por lo que todos los\n  contenedores derivados de dicha imagen comparten las mismas claves. Un atacante puede conectarse a un contenedor de compilación\n, leer el secreto de compilación y marcharse sin dejar rastro.\n- **CVE-2025-32111** (`acme.sh`) — Se filtró un secreto de compilación durante el proceso de compilación. Un atacante\n  que dispusiera de este secreto podría sustituir un cliente de Let's Encrypt de uso generalizado y llevar a cabo ataques de tipo «man-in-the-middle»\n  sobre una parte significativa del tráfico de Internet.",
+    "fr": "- **CVE-2025-32754** (`jenkins/ssh-agent`) — Les clés SSH sont générées lors de la création de l'image ; par conséquent, chaque\n  conteneur dérivé de cette image partage les mêmes clés. Un attaquant peut se connecter à un\n  conteneur de compilation, lire le secret de compilation, puis s'éclipser sans laisser de traces.\n- **CVE-2025-32111** (`acme.sh`) — un secret de compilation a été divulgué au cours du processus de compilation. Un attaquant\n  disposant de ce secret pourrait remplacer un client Let's Encrypt largement utilisé et mener des attaques de type « man-in-the-middle »\n  sur une part importante du trafic Internet.",
+    "zh": "- **CVE-2025-32754**（`jenkins/ssh-agent`）——SSH 密钥是在镜像构建时生成的，因此每个\n  基于该镜像构建的容器都会使用相同的密钥。 攻击者可以连接到构建\n  容器，读取构建密钥，并悄无声息地离开。\n- **CVE-2025-32111** (`acme.sh`) — 构建过程中泄露了构建密钥。 攻击者\n  若掌握此密钥，便可替换广泛使用的 Let's Encrypt 客户端，并对互联网流量中的\n  相当大一部分实施中间人\n  攻击。",
+    "vi": "- **CVE-2025-32754** (`jenkins/ssh-agent`) — Các khóa SSH được tạo ra tại thời điểm xây dựng hình ảnh, do đó mọi\n  container được tạo ra từ hình ảnh đó đều sử dụng chung các khóa này. Kẻ tấn công có thể kết nối vào một\n  container xây dựng, đọc thông tin bí mật của quá trình xây dựng và rời đi mà không để lại dấu vết.\n- **CVE-2025-32111** (`acme.sh`) — thông tin bí mật của quá trình xây dựng đã bị rò rỉ trong quá trình xây dựng. Kẻ tấn công\n  nếu có được thông tin bí mật này có thể thay thế một client Let's Encrypt được sử dụng rộng rãi và thực hiện các cuộc tấn công man-in-the-middle\n  trên một phần đáng kể lưu lượng truy cập internet."
+  },
+  "30b8937988a601b09fa183601f57348dad191e18ebada3a2c06ebf7a4c6344c0": {
+    "es": "Un escáner que se ejecutara sobre la imagen final no las detectaría. SBOMit las captura porque\nWitness supervisa la compilación a medida que se lleva a cabo.",
+    "fr": "Un scanner analysant l'image finale ne les détecterait pas. SBOMit les capture car\nWitness surveille la compilation en temps réel.",
+    "zh": "如果使用扫描器对最终图像进行检查，是无法发现这些问题的。SBOMit 能捕获这些问题，因为\nWitness 会实时监控构建过程。",
+    "vi": "Một trình quét chạy trên hình ảnh cuối cùng sẽ không phát hiện được những chi tiết này. Công cụ “SBOMit” ghi lại chúng vì\ncông cụ “Witness” theo dõi quá trình xây dựng ngay khi nó diễn ra."
+  },
+  "c76b65da9e75575b0a35cdb398721b4a0f349a9e5d148af1bf4cbdcd3a9c73d5": {
+    "es": "## ¿Qué son in-toto, Witness y attestations?",
+    "fr": "## Que sont in-toto, Witness et attestations ?",
+    "zh": "## 什么是 in-toto、Witness 和 attestations？",
+    "vi": "## “in-toto”, “Witness” và “attestations” là gì?"
+  },
+  "e9b825a69f84661bc5caa34d25760d4d76d8d4daf49d561ffc7f11e5f89f646b": {
+    "es": "**[in-toto](https://in-toto.io/)** es un marco de trabajo de la CNCF destinado a garantizar la seguridad de las cadenas de suministro de software. Define\nun estándar para registrar y verificar los pasos que conllevan la creación de software, como quién realizó\ncada paso, sobre qué archivos se actuó y cuáles fueron los resultados. Cada paso se registra como una\ndeclaración firmada y a prueba de manipulaciones sobre lo que ocurrió, firmada por la parte que lo llevó a cabo.",
+    "fr": "**[in-toto](https://in-toto.io/)** est un framework de la CNCF destiné à sécuriser les chaînes d’approvisionnement logicielles. Il\ndéfinit une norme permettant d’enregistrer et de vérifier les étapes de développement d’un logiciel, notamment qui a effectué\nchaque étape, sur quels fichiers il a opéré et quels ont été les résultats obtenus. Chaque étape est enregistrée sous la forme d’une\ndéclaration signée et inviolable décrivant ce qui s’est passé, signée par la partie qui l’a effectuée.",
+    "zh": "**[in-toto](https://in-toto.io/)** 是 CNCF 推出的一套用于保障软件供应链安全的框架。它\n定义了一项标准，用于记录和验证软件开发过程中的各个步骤，例如谁执行了\n每个步骤、操作了哪些文件以及产生了哪些输出结果。 每个步骤都会被记录为一份\n关于该步骤执行情况的、经过签名的防篡改声明，并由执行该步骤的一方进行签名。",
+    "vi": "**[in-toto](https://in-toto.io/)** là một khung công nghệ của CNCF nhằm bảo đảm an ninh cho chuỗi cung ứng phần mềm. Khung này\nxác định một tiêu chuẩn để ghi lại và xác minh các bước trong quá trình phát triển phần mềm, bao gồm người thực hiện\nmỗi bước, các tệp tin được xử lý và kết quả đầu ra. Mỗi bước được ghi lại dưới dạng một\nbản tuyên bố có chữ ký và chống giả mạo về những gì đã xảy ra, được ký bởi bên đã thực hiện bước đó."
+  },
+  "524fb1b65360b5f21d452c7e8bb525091f6da6e55d370032ad9031083f78bc5e": {
+    "es": "**[Witness](https://github.com/in-toto/witness)** es una implementación de in-toto que integra\ntu proceso de compilación para generar automáticamente estos attestations. Solo tienes que envolver tu comando de compilación con\n`Witness run` y este registrará una colección firmada de attestation para ese paso.\nWitness fue creado por TestifySec y donado al ecosistema in-toto de la CNCF.",
+    "fr": "**[Witness](https://github.com/in-toto/witness)** est une implémentation d’in-toto qui s’intègre à\nvotre pipeline de build pour générer automatiquement ces attestations. Il suffit d’encapsuler votre commande de build avec\n`Witness run` pour qu’elle enregistre une collection signée d’attestations pour cette étape.\nWitness a été créé par TestifySec et offert à l’écosystème in-toto de la CNCF.",
+    "zh": "**[Witness](https://github.com/in-toto/witness)** 是一个 in-toto 实现，它会对\n您的构建管道进行插桩，以自动生成这些 attestations。您只需将构建命令包裹在\n`Witness run` 中，它就会为该步骤记录一个已签名的 attestation 集合。\nWitness 由 TestifySec 创建，并捐赠给了 CNCF in-toto 生态系统。",
+    "vi": "**[Witness](https://github.com/in-toto/witness)** là một triển khai của giao thức xác thực mã nguồn (in-toto) giúp tích hợp\nvào quy trình xây dựng của bạn để tự động tạo ra các tệp xác thực mã nguồn (attestations). Bạn chỉ cần bao bọc lệnh xây dựng của mình bằng\n`Witness run` và công cụ này sẽ ghi lại một bộ sưu tập các tệp xác thực mã nguồn đã được ký (attestation) cho bước đó.\nWitness được phát triển bởi TestifySec và đóng góp cho hệ sinh thái CNCF in-toto."
+  },
+  "4559fe1a24699734095182fecd2e9a7450c86e54123f4aadbd44647aea7126c5": {
+    "es": "**Los attestations** son la primitiva básica. Cada uno de ellos es un registro con signo de un paso de compilación, que contiene:",
+    "fr": "Les **« attestations »** constituent la primitive de base. Chacune d'entre elles correspond à un enregistrement signé d'une étape de compilation, contenant :",
+    "zh": "**attestations** 是核心基本单元。每个都是一个构建步骤的有符号记录，包含：",
+    "vi": "**Các bản ghi attestations** là các nguyên tố cốt lõi. Mỗi bản ghi là một bản ghi có dấu của một bước xây dựng, bao gồm:"
+  },
+  "09031c7bdaef797a1c236a12b7c7c1acb686969575e891d01771d94e4345ad45": {
+    "es": "| attestation | Capturas |\n|---|---|\n| `material` | Archivos de entrada y sus hash (lo que se introdujo) |\n| `ejecución-de-comandos` | Comandos ejecutados, archivos abiertos, procesos generados |\n| `producto` | Archivos de salida y sus hash (lo que se obtuvo) |\n| `entorno` | Sistema operativo, entorno de ejecución, versiones de las herramientas |\n| `rastreo-de-red` | Todas las conexiones de red salientes durante el paso |",
+    "fr": "| attestation | Captures |\n|---|---|\n| `material` | Fichiers d'entrée et leurs hachages (données d'entrée) |\n| `command-run` | Commandes exécutées, fichiers ouverts, processus lancés |\n| `product` | Fichiers de sortie et leurs hachages (ce qui est sorti) |\n| `environment` | Système d’exploitation, environnement d’exécution, versions des outils |\n| `network-trace` | Toutes les connexions réseau sortantes pendant l’étape |",
+    "zh": "| attestation | 捕获内容 |\n|---|---|\n| `material` | 输入文件及其哈希值（输入内容） |\n| `command-run` | 执行的命令、打开的文件、启动的进程 |\n| `product` | 输出文件及其哈希值（处理结果） |\n| `environment` | 操作系统、运行时环境、工具版本 |\n| `network-trace` | 该步骤期间的所有出站网络连接 |",
+    "vi": "| attestation | Dữ liệu thu thập |\n|---|---|\n| `material` | Các tệp đầu vào và giá trị băm của chúng (dữ liệu đầu vào) |\n| `command-run` | Các lệnh đã chạy, các tệp đã mở, các tiến trình đã khởi tạo |\n| `product` | Các tệp đầu ra và các giá trị băm của chúng (kết quả đầu ra) |\n| `environment` | Hệ điều hành, môi trường chạy, phiên bản công cụ |\n| `network-trace` | Tất cả các kết nối mạng đi trong suốt bước này |"
+  },
+  "5b7ae4cacf9f1303f7996a2c87e07d12f6087395145a6205f4dac56bcff130e0": {
+    "es": "Dado que cada attestation se firma en el momento en que se ejecuta el paso, el historial de compilación es\nverificable criptográficamente.",
+    "fr": "Comme chaque attestation est signée au moment de l'exécution de l'étape, l'historique de la compilation est\nvérifiable par des moyens cryptographiques.",
+    "zh": "由于每个attestation都在步骤运行时进行签名，因此构建历史记录\n可通过加密方式进行验证。",
+    "vi": "Vì mỗi tệp attestation đều được ký số tại thời điểm bước đó được thực thi, nên lịch sử xây dựng có thể\nđược xác minh bằng phương pháp mật mã."
+  },
+  "2de83616ebbc58f6c840ef0cb4793aa731930a385ca24e33f30816d4522e7196": {
+    "es": "Para obtener más información sobre este tema, consulta [¿Qué ventajas ofrece in-toto?](https://in-toto.io/in-toto/) en la página web in-toto.",
+    "fr": "Pour plus d'informations à ce sujet, veuillez consulter la rubrique [Quels sont les avantages d'in-toto ?](https://in-toto.io/in-toto/) sur le site in-toto.",
+    "zh": "有关此主题的更多信息，请参阅in-toto网站上的[in-toto有哪些优势](https://in-toto.io/in-toto/)。",
+    "vi": "Để biết thêm thông tin về chủ đề này, vui lòng tham khảo bài viết [in-toto mang lại những lợi ích gì](https://in-toto.io/in-toto/) trên trang web in-toto."
+  },
+  "ec80fef4ebfdab483949b711d8bc5248c016c1fa423e62e29338f6c142dc79cb": {
+    "es": "## ¿Cómo funciona «SBOMit»?",
+    "fr": "## Comment fonctionne « SBOMit » ?",
+    "zh": "## SBOMit 是如何运作的？",
+    "vi": "## SBOMit hoạt động như thế nào?"
+  },
+  "d4ac155368a673302cbfa7d3be0e248fd638444797a469a00110e2f9770ba7cb": {
+    "es": "La herramienta «SBOMit» lee un archivo Witness attestation y:",
+    "fr": "L'outil « SBOMit » lit un fichier Witness attestation et :",
+    "zh": "`SBOMit` 工具会读取一个 Witness attestation 文件，并：",
+    "vi": "Công cụ `SBOMit` đọc tệp Witness attestation và:"
+  },
+  "772b56c218b143e0d24d59f68ed9c0cf0e97fd625887e1eee4af758bde0c31c1": {
+    "es": "1. Analiza todos los tipos de «attestation» para obtener una visión completa de lo que ha ocurrido durante la compilación\n2. Ejecuta **resolutores de paquetes específicos para cada lenguaje** (Python, Go, Rust, JavaScript/pnpm) para asociar\n   las rutas de los archivos observadas con los nombres de los paquetes y sus versiones exactas\n3. Filtra los artefactos temporales o de caché y elimina las duplicadas en las referencias a paquetes\n4. Genera un **archivo SPDX** estándar (2.2/2.3) o un **archivo CycloneDX** (1.4/1.5) SBOM enriquecido con\n   los datos observados durante la compilación",
+    "fr": "1. Analyse tous les types de fichiers « attestation » afin d’obtenir une vue d’ensemble complète de ce qui s’est passé pendant la compilation\n2. Exécute des **résolveurs de paquets spécifiques à chaque langage** (Python, Go, Rust, JavaScript/pnpm) pour associer\n   les chemins d’accès aux fichiers observés aux noms de paquets et à leurs versions exactes\n3. Filtre les artefacts temporaires ou de cache et déduplique les références aux paquets\n4. Génère un fichier **SPDX** (2.2/2.3) ou **CycloneDX** (1.4/1.5) standard SBOM enrichi des\n   données observées lors de la compilation",
+    "zh": "1. 解析所有 attestation 类型，以全面了解构建过程中发生的情况\n2. 运行 **特定语言的包解析器**（Python、Go、Rust、JavaScript/pnpm），将\n   观察到的文件路径映射回包名和确切版本\n3. 过滤掉临时/缓存构建产物，并对包引用进行去重\n4. 生成一个标准的 **SPDX**（2.2/2.3）或 **CycloneDX**（1.4/1.5）SBOM，其中包含\n   构建过程中观察到的数据",
+    "vi": "1. Phân tích tất cả các loại tệp nhật ký xây dựng (attestation) để xây dựng bức tranh toàn cảnh về những gì đã xảy ra trong quá trình xây dựng\n2. Chạy **các trình giải quyết gói dành riêng cho từng ngôn ngữ** (Python, Go, Rust, JavaScript/pnpm) để ánh xạ\n   các đường dẫn tệp được quan sát trở lại tên gói và phiên bản chính xác\n3. Loại bỏ các thành phần tạm thời/bộ nhớ đệm và loại bỏ các tham chiếu gói trùng lặp\n4. Xuất ra tệp **SPDX** (2.2/2.3) hoặc **CycloneDX** (1.4/1.5) tiêu chuẩn SBOM được bổ sung bằng\n   dữ liệu quan sát được trong quá trình xây dựng"
+  },
+  "b7d2a2f4392fc244da1b859d83c163134672dcf7853f7749753831e3aa6a051d": {
+    "es": "El resultado es un archivo «SBOM» que refleja lo que realmente se ha instalado y utilizado, incluidas las versiones exactas, las bibliotecas nativas y los archivos que no detectan los gestores de paquetes. Consulta la [Guía de introducción](/getting-started) para conocer cómo instalarlo y utilizarlo.",
+    "fr": "Le résultat est un fichier « SBOM » qui reflète ce qui a réellement été installé et utilisé, y compris les versions exactes, les bibliothèques natives et les fichiers invisibles pour les gestionnaires de paquets. Consultez le [guide de démarrage](/getting-started) pour connaître les modalités d'installation et d'utilisation.",
+    "zh": "最终生成的SBOM文件将如实反映实际安装和使用的内容，包括准确的版本信息、原生库以及包管理器无法检测到的文件。有关安装和使用方法，请参阅[入门指南](/getting-started)。",
+    "vi": "Kết quả là tệp `SBOM` phản ánh chính xác những gì đã được cài đặt và sử dụng, bao gồm các phiên bản chính xác, các thư viện gốc và các tệp mà trình quản lý gói không thể phát hiện. Xem [Hướng dẫn Bắt đầu](/getting-started) để biết cách cài đặt và sử dụng."
+  },
+  "b4e07a44cd0ff7b6656b1bbe8c895b42d2b22f7d338a593ab3683a78f8c32030": {
+    "es": "## ¿Qué ocurre si mi cadena de suministro presenta eslabones inseguros?",
+    "fr": "## Que se passe-t-il si ma chaîne d'approvisionnement comporte des maillons non sécurisés ?",
+    "zh": "## 如果我的供应链中存在不安全的环节怎么办？",
+    "vi": "## Nếu chuỗi cung ứng của tôi có những khâu không an toàn thì sao?"
+  },
+  "62c57b82a2082288d4841ec238ae1144725ef7ec5a66b279a667d4ba520c7324": {
+    "es": "attestations no sustituyen a unos procesos de compilación seguros, sino que constituyen un registro de lo que\nha ocurrido, no una garantía de que lo ocurrido fuera seguro. Si tu compilación descarga un script de\nInternet y lo ejecuta, Witness certificará fielmente que esto ha ocurrido.",
+    "fr": "attestations ne remplacent pas la mise en place de processus de compilation sécurisés, mais constituent un enregistrement de ce qui\ns'est passé, et non une garantie que ce qui s'est passé était sûr. Si votre processus de compilation récupère un script depuis\nInternet et l'exécute, la commande « Witness » attestera fidèlement que cela s'est produit.",
+    "zh": "attestations 这些并不能替代安全的构建流程，而只是对发生过什么的\n记录，并非对所发生过程的安全性的保证。如果您的构建过程从\n互联网上下载了一个脚本并执行了它，Witness 将如实记录这一操作。",
+    "vi": "attestations không thể thay thế cho các quy trình xây dựng an toàn, mà chỉ là bản ghi lại những gì\nđã xảy ra, chứ không phải là sự đảm bảo rằng những gì đã xảy ra là an toàn. Nếu quá trình xây dựng của bạn tải về một tập lệnh từ\ninternet và thực thi nó, Witness sẽ xác nhận một cách trung thực rằng điều này đã xảy ra."
+  },
+  "7ce04f59562b7ebd45774f955920cf5acdef5e1c24d06eafde577a5555d82650": {
+    "es": "Lo que te ofrecen attestations es **visibilidad y responsabilidad**. El comando `network-trace` attestation\nmostrará esa conexión saliente inesperada. El comando `command-run` attestation registrará el\nproceso que la realizó. No se puede ocultar nada a posteriori, ya que los archivos attestations se firman en\nel momento de la compilación.",
+    "fr": "Les «attestations» vous apportent **visibilité et traçabilité**. L’attestation `network-trace`\naffichera cette connexion sortante inattendue. L’attestation `command-run` enregistrera le\nprocessus à l’origine de celle-ci. Rien ne peut être dissimulé a posteriori, car les attestations sont signés au\nmoment de la compilation.",
+    "zh": "attestations 为您提供的正是 **可视性和可追溯性**。`network-trace` attestation\n将显示该意外的出站连接。`command-run` attestation 将记录\n发起该连接的进程。事后无法隐瞒任何信息，因为 attestations 在\n构建时已进行签名。",
+    "vi": "attestations mang lại cho bạn **khả năng theo dõi và tính minh bạch**. Lệnh `network-trace` attestation\nsẽ hiển thị kết nối đi bất thường đó. Lệnh `command-run` attestation sẽ ghi lại\nquá trình đã tạo ra kết nối đó. Không thể che giấu bất cứ điều gì sau khi sự việc xảy ra, bởi vì các tệp attestations đã được ký số tại\nthời điểm biên dịch."
+  },
+  "2e963e22af7431cd988e81279d7fd9135040533719dbcca04f88e01fb0631827": {
+    "es": "Para los equipos que deseen aplicar políticas adicionales, como exigir que las compilaciones solo obtengan código de\nregistros aprobados, que determinados pasos estén siempre firmados con claves específicas o que no se ejecuten\nprocesos inesperados, [Witness\nla verificación de políticas](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)\ny marcos como [SLSA\n](https://slsa.dev/) establecen reglas de seguridad bien definidas basadas enin-toto\n\nattestations\n.SBOMit\npuede utilizarse junto con la puntuación de cumplimiento deSLSA\npara ofrecer una\nvisión completa tanto de lo que contiene el software como de cómo se ha producido.",
+    "fr": "Pour les équipes qui souhaitent appliquer des politiques supplémentaires, comme exiger que les builds proviennent exclusivement de\nregistres approuvés, que certaines étapes soient toujours signées par des clés spécifiques, ou qu’aucun processus inattendu\nne soit exécuté, [Witness\nla vérification des politiques](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)\net des frameworks tels que [SLSA\n](https://slsa.dev/) établissent des règles de sécurité strictes en complément dein-toto\n\nattestations\n.SBOMit\npeut être utilisé conjointement avec l’évaluation de conformité deSLSA\npour offrir une\nvue d’ensemble complète à la fois du contenu du logiciel et de la manière dont il a été produit.",
+    "zh": "对于希望在此基础上实施相关策略的团队，例如强制要求构建仅从\n已批准的注册表中拉取代码、确保特定步骤始终由特定密钥签名，或者确保没有意外\n进程运行，[Witness\n策略验证](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)\n以及诸如 [SLSA\n](https://slsa.dev/) 之类的框架，可在in-toto\n\nattestations\n的基础上构建具有明确立场的安全规则。SBOMit\n可与SLSA\n的合规性评分结合使用，从而全面\n展现软件的组成内容及其构建过程。",
+    "vi": "Đối với các nhóm muốn áp dụng các chính sách bổ sung như yêu cầu các bản dựng chỉ lấy mã nguồn từ\ncác kho lưu trữ đã được phê duyệt, đảm bảo các bước nhất định luôn được ký bằng các khóa cụ thể, hoặc không có\nquá trình bất thường nào được thực thi, [Witness\nxác minh chính sách](https://github.com/in-toto/witness/blob/main/docs/concepts/policy.md)\nvà các khung công cụ như [SLSA\n](https://slsa.dev/) xây dựng các quy tắc bảo mật có định hướng dựa trênin-toto\n\nattestations\n.SBOMit\ncó thể được sử dụng cùng với hệ thống chấm điểm tuân thủSLSA\nđể cung cấp một\nbức tranh toàn diện về cả những gì có trong phần mềm và cách thức nó được sản xuất."
+  },
+  "bbe66a8c5e0780e00bc4ea7aaab0e6587bb8647f677c440db5b38100e732bc5d": {
+    "es": "## ¿Cuál es la diferencia entre firmar un «SBOM» y utilizar «SBOMit»?",
+    "fr": "## Quelle est la différence entre signer un « SBOM » et utiliser « SBOMit » ?",
+    "zh": "## 签署SBOM和使用SBOMit有什么区别？",
+    "vi": "## Sự khác biệt giữa việc ký tên vào “SBOM” và việc sử dụng “SBOMit” là gì?"
+  },
+  "79f39c17d7d36d2fee6d76956ddd79e49b5dae9b37aff78da70b70bfa52446c8": {
+    "es": "La firma de un SBOM proporciona **integridad**, lo que garantiza que el documento no ha sido alterado desde que\nse firmó. El contenido podría haber sido erróneo o incompleto desde\nel principio, y usted está confiando en la afirmación de una sola parte sobre el software en un momento concreto\n. Si la clave de firma se ve comprometida, o si el firmante cometió errores, el SBOM firmado\nno tiene ningún valor.",
+    "fr": "La signature d'un fichier SBOM assure l'**intégrité**, ce qui garantit que le document n'a pas été altéré depuis sa\nsignature. Le contenu pouvait être erroné ou incomplet dès\nle départ, et vous vous fiez à l’affirmation d’une seule partie concernant le logiciel à un moment précis\n. Si la clé de signature est compromise, ou si le signataire a commis des erreurs, l’SBOMe signé n’a\naucune valeur.",
+    "zh": "对SBOM进行签名可提供**完整性**，从而保证您确信该文档自\n签名以来未被篡改。 内容最初可能就存在错误或不完整，\n而您只是信任某一方在某个特定时间点\n对该软件所作的声明。如果签名密钥遭到泄露，或者签名者出现失误，那么已签名的 SBOM 文件\n便毫无价值。",
+    "vi": "Việc ký kết một tệp tin “SBOM” mang lại **tính toàn vẹn**, đảm bảo rằng bạn biết tài liệu đó chưa bị can thiệp kể từ khi\nđược ký. Nội dung có thể đã sai hoặc không đầy đủ ngay từ\nđầu, và bạn đang tin tưởng vào tuyên bố của một bên duy nhất về phần mềm tại một thời điểm cụ thể\nnào đó. Nếu khóa ký bị lộ, hoặc nếu người ký mắc lỗi, tệp SBOM đã ký sẽ\ntrở nên vô giá trị."
+  },
+  "7b23bd61c295547225e78cb99b9306c1ce5731702eebca1adb46631694850031": {
+    "es": "Con SBOMit y Witness, cada attestation se firma **en el momento en que se ejecuta el paso de compilación**, por el\nproceso que lo lleva a cabo. No se confía en la afirmación a posteriori de una sola parte, sino que se dispone de\npruebas criptográficas independientes de cada paso de la cadena de suministro. Las imprecisiones accidentales\n(un paso que se ha omitido, una dependencia que se ha sustituido sin que se haya notado) son detectables porque rompen\nla cadena de attestation. La manipulación deliberada es mucho más difícil de ocultar.",
+    "fr": "Avec SBOMit et Witness, chaque fichier attestation est signé **au moment où l'étape de compilation s'exécute**, par le\nprocessus qui l'effectue. Vous ne vous fiez pas à l’affirmation a posteriori d’une seule partie, mais disposez au contraire de\npreuves cryptographiques indépendantes à chaque étape de la chaîne logistique. Les inexactitudes accidentelles\n(une étape omise, une dépendance discrètement remplacée) sont détectables car elles brisent\nla chaîne d’attestation. Les altérations délibérées sont nettement plus difficiles à dissimuler.",
+    "zh": "借助 SBOMit 和 Witness，每个 attestation 都会在 **构建步骤运行时**，由\n执行该步骤的进程进行签名。 您无需信任某一方事后提出的声明，而是拥有\n来自供应链每个环节的独立加密证据。意外的不准确之处\n（例如某个步骤被跳过，某个依赖项被悄然替换）是可以被检测到的，因为它们会破坏\nattestation链。而蓄意的篡改则要难得多。",
+    "vi": "Với SBOMit và Witness, mỗi tệp attestation đều được ký **tại thời điểm bước xây dựng được thực thi**, bởi\nquy trình thực hiện bước đó. Bạn không phải tin tưởng vào lời khẳng định sau sự việc của một bên nào đó, mà thay vào đó, bạn có\nbằng chứng mật mã độc lập từ mọi bước trong chuỗi cung ứng. Những sai sót vô tình\n(một bước bị bỏ qua, một phụ thuộc bị thay thế một cách âm thầm) đều có thể phát hiện được vì chúng làm gián đoạn\nchuỗi attestation. Việc can thiệp cố ý sẽ khó che giấu hơn đáng kể."
+  },
+  "fb4c9dd85bc89be438cc8319e6b45e72a99b05d6435ca8fb991fef3dfebbc833": {
+    "es": "Primeros pasos",
+    "fr": "Pour commencer",
+    "zh": "入门指南",
+    "vi": "Bắt đầu"
+  },
+  "4bc8455c04203b5745b086f73ec1477685920e85966dc7467120e2afd81ee09d": {
+    "es": "Esta guía explica paso a paso cómo configurar [Witness](https://github.com/in-toto/witness) para instrumentar\ntu compilación y, a continuación, cómo utilizar SBOMit para generar un SBOM enriquecido a partir del attestation resultante.",
+    "fr": "Ce guide vous explique comment configurer [Witness](https://github.com/in-toto/witness) pour instrumenter\nvotre build, puis comment utiliser SBOMit pour générer un fichier SBOM enrichi à partir du fichier attestation obtenu.",
+    "zh": "本指南将逐步介绍如何配置 [Witness](https://github.com/in-toto/witness) 来对\n您的构建进行监控，然后使用 SBOMit 从生成的 attestation 文件中生成一个增强版的 SBOM 文件。",
+    "vi": "Hướng dẫn này sẽ hướng dẫn bạn cách thiết lập [Witness](https://github.com/in-toto/witness) để theo dõi\nquá trình xây dựng, sau đó sử dụng SBOMit để tạo ra tệp SBOM được bổ sung thông tin từ tệp attestation thu được."
+  },
+  "84afdb516d2d523af39554c46227d7bcfb3b0c7f17662860ec8d6b7429bef191": {
+    "es": "## Requisitos previos",
+    "fr": "## Conditions préalables",
+    "zh": "## 先决条件",
+    "vi": "## Điều kiện tiên quyết"
+  },
+  "d20c52e0ea8d77ae66537154195c1294ab83dc16816454eee1ca46c23246e24e": {
+    "es": "- [Go](https://go.dev/doc/install) 1.19 o posterior\n- [openssl](https://www.openssl.org/)\n- [jq](https://jqlang.github.io/jq/)\n- [base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html) (parte de GNU coreutils)",
+    "fr": "- [Go](https://go.dev/doc/install) version 1.19 ou ultérieure\n- [openssl](https://www.openssl.org/)\n- [jq](https://jqlang.github.io/jq/)\n- [base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html) (faisant partie de GNU coreutils)",
+    "zh": "- [Go](https://go.dev/doc/install) 1.19 或更高版本\n- [openssl](https://www.openssl.org/)\n- [jq](https://jqlang.github.io/jq/)\n- [base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html)（属于 GNU coreutils 的一部分）",
+    "vi": "- [Go](https://go.dev/doc/install) phiên bản 1.19 trở lên\n- [openssl](https://www.openssl.org/)\n- [jq](https://jqlang.github.io/jq/)\n- [base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html) (một phần của GNU coreutils)"
+  },
+  "1f2e4a8cbb22b194ce6f61592761e8ba5e68ffac49e0e3278010d794e5fb6256": {
+    "es": "## Parte 1: Witness",
+    "fr": "## Partie 1 : Witness",
+    "zh": "## 第一部分：Witness",
+    "vi": "## Phần 1: Witness"
+  },
+  "2d68cdb989b7974d926ed7a6beda3421848f6472759084d40cd8b2c4997c0476": {
+    "es": "Witness envuelve tu proceso de compilación y registra los archivos «attestations» firmados, un registro de auditoría criptográfica.",
+    "fr": "Witness encapsule votre processus de compilation et enregistre l'attestations signée, qui constitue une piste d'audit cryptographique.",
+    "zh": "Witness 封装您的构建流程，并记录已签名的attestations，即加密审计日志。",
+    "vi": "Witness bao bọc quy trình xây dựng của bạn và ghi lại các tệp bản dựng đã được ký (attestations), một bản ghi kiểm toán mật mã."
+  },
+  "b11d66437b063af957e22e7951bd1f9fc4449b25fa20565e3c33a1e65ce351ca": {
+    "es": "### 1. Instalar «Witness»",
+    "fr": "### 1. Installer « Witness »",
+    "zh": "### 1. 安装Witness",
+    "vi": "### 1. Cài đặt Witness"
+  },
+  "2e5918b5dec734faa5b48c7873cccbb34eb3653c85389e012f43c1d536ddd4e3": {
+    "es": "O bien, descarga un archivo binario desde la [página de versiones de Witness](https://github.com/in-toto/witness/releases).",
+    "fr": "Ou téléchargez un fichier binaire depuis la [page des versions de Witness](https://github.com/in-toto/witness/releases).",
+    "zh": "或者从 [Witness 发布页面](https://github.com/in-toto/witness/releases) 下载二进制文件。",
+    "vi": "Hoặc tải xuống tệp nhị phân từ [trang phát hành của Witness](https://github.com/in-toto/witness/releases)."
+  },
+  "fc7c28a4a5353265ef2da691a0766130a09f413aff29ca42c4aa0fcd669fed73": {
+    "es": "### 2. Crear un par de claves de firma",
+    "fr": "### 2. Créer une paire de clés de signature",
+    "zh": "### 2. 创建签名密钥对",
+    "vi": "### 2. Tạo cặp khóa ký"
+  },
+  "ae7926574840808d259b8b568da65c476edcc55b4f0983eacae08cea8775cad8": {
+    "es": "Witness firma cada archivo «attestation» con una clave privada. Para realizar una prueba rápida en el equipo local:",
+    "fr": "Witness signe chaque fichier « attestation » à l'aide d'une clé privée. Pour effectuer un test rapide en local :",
+    "zh": "Witness 使用私钥对每个attestation进行签名。若要进行快速本地测试：",
+    "vi": "Witness ký từng tệp attestation bằng khóa riêng. Để thực hiện một thử nghiệm nhanh tại máy cục bộ:"
+  },
+  "5d4a8cac53410ee0621750fcf06f9336c8563ffd8088d6ca9f59d9de4af072d2": {
+    "es": "&gt; **Consejo:** Witness también admite la firma sin clave a través de [SPIRE/SPIFFE](https://spiffe.io/) y\n&gt; [Sigstore Fulcio](https://github.com/sigstore/fulcio) para entornos de CI/CD.",
+    "fr": "&gt; **Astuce :** Witness prend également en charge la signature sans clé via [SPIRE/SPIFFE](https://spiffe.io/) et\n&gt; [Sigstore Fulcio](https://github.com/sigstore/fulcio) pour les environnements CI/CD.",
+    "zh": "&gt; **提示：** Witness 还支持通过 [SPIRE/SPIFFE](https://spiffe.io/) 和\n&gt; [Sigstore Fulcio](https://github.com/sigstore/fulcio) 进行无密钥签名，适用于 CI/CD 环境。",
+    "vi": "&gt; **Mẹo:** Witness cũng hỗ trợ ký không cần khóa thông qua [SPIRE/SPIFFE](https://spiffe.io/) và\n&gt; [Sigstore Fulcio](https://github.com/sigstore/fulcio) cho các môi trường CI/CD."
+  },
+  "39aaa9558aa9a6262034bff5e643562da19dc439ce9dceb75a12e1474412b6f8": {
+    "es": "### 3. Configurar Witness",
+    "fr": "### 3. Configurer Witness",
+    "zh": "### 3. 配置Witness",
+    "vi": "### 3. Cấu hình tệp `Witness`"
+  },
+  "aac56a95c1964f4682c5f6dc449c8b6f9efb0461b0a9aa081e238e86172df36d": {
+    "es": "Crea un archivo `.Witness.yaml` en la raíz de tu proyecto. Este archivo suele incluirse en el commit junto con tu\nclave pública:",
+    "fr": "Créez un fichier `.Witness.yaml` à la racine de votre projet. Ce fichier est généralement ajouté au contrôle de version en même temps que votre\nclé publique :",
+    "zh": "在项目根目录下创建一个名为 `.Witness.yaml` 的文件。该文件通常会与您的\n公钥一起提交：",
+    "vi": "Tạo một tệp `.Witness.yaml` trong thư mục gốc của dự án. Tệp này thường được đưa vào kho lưu trữ cùng với\nkhóa công khai của bạn:"
+  },
+  "d6334b7515e2a3417e80ef8950fb80211be6237a94136ef7bb4d52043002a4fa": {
+    "es": "Los parámetros de la línea de comandos tienen prioridad sobre los valores del archivo de configuración. Ejecuta «Witness help» para ver todas las opciones.",
+    "fr": "Les options de ligne de commande ont priorité sur les valeurs du fichier de configuration. Exécutez « Witness help » pour afficher toutes les options.",
+    "zh": "命令行参数会覆盖配置文件中的值。运行 `Witness help` 可查看所有选项。",
+    "vi": "Các tham số dòng lệnh sẽ ghi đè lên các giá trị trong tệp cấu hình. Chạy lệnh `Witness help` để xem tất cả các tùy chọn."
+  },
+  "44ceb1a0eba14e85e79b45a8b4a001ae6ae1370ed15fd25af1ac7e090bad91cd": {
+    "es": "### 4. Compila tu proyecto",
+    "fr": "### 4. Enveloppez votre montage",
+    "zh": "### 4. 打包您的构建",
+    "vi": "### 4. Hoàn tất quá trình xây dựng"
+  },
+  "2090adecf027a77181a3110f33601bc339e2617dc96457c879384262df248447": {
+    "es": "Añade al principio de tu comando de compilación «Witness run» para generar un archivo «attestation»:",
+    "fr": "Ajoutez « Witness run » au début de votre commande de compilation pour générer un fichier « attestation » :",
+    "zh": "在构建命令前加上 `Witness run`，即可生成一个 attestation 文件：",
+    "vi": "Hãy thêm tiền tố `Witness run` vào đầu lệnh biên dịch để tạo ra tệp attestation:"
+  },
+  "92f9ce56d1cbda445ba3fe55f1193ca1d61cc7f87311babeb710461d74723066": {
+    "es": "**Proyecto Go:**",
+    "fr": "**Projet Go :**",
+    "zh": "**Go 项目：**",
+    "vi": "**Dự án Go:**"
+  },
+  "78ae764fe60b17c5e4723f8c9cabbe3cc579cc007943033576c9232a21d0f932": {
+    "es": "**Proyecto de Python:**",
+    "fr": "**Projet Python :**",
+    "zh": "**Python 项目：**",
+    "vi": "**Dự án Python:**"
+  },
+  "5cb95e408a9c250d8e72dca3b1ce8a1b712ad61e6efeede7efc44eea4cb0941a": {
+    "es": "Witness siempre ejecuta un conjunto básico de\nverificadores; consulta `Witness attestors list` para ver la lista completa.",
+    "fr": "Witness exécute toujours un ensemble de base d’\nattestateurs — voir `Witness attestors list` pour la liste complète.",
+    "zh": "Witness 始终运行一组基础\n验证器——完整列表请参见 `Witness attestors list`。",
+    "vi": "Witness luôn chạy một bộ cơ bản các\nbộ xác thực — xem `Witness attestors list` để xem danh sách đầy đủ."
+  },
+  "93e1f283775e17cb5efef7623a4acedb1cf07b5146dd0a9e229eb4f5e6045adc": {
+    "es": "&gt; **Consejo:** Para compilaciones que generan muchos archivos (por ejemplo, `node_modules`), utiliza\n&gt; `--dirhash-glob node_modules/*` para calcular el hash del contenido del directorio en lugar de hacerlo con cada archivo por separado.",
+    "fr": "&gt; **Astuce :** Pour les compilations qui génèrent de nombreux fichiers (par exemple, `node_modules`), utilisez\n&gt; `--dirhash-glob node_modules/*` afin de calculer le hachage du contenu du répertoire plutôt que celui de chaque fichier individuellement.",
+    "zh": "&gt; **提示：** 对于会生成大量文件的构建（例如 `node_modules`），请使用\n&gt; `--dirhash-glob node_modules/*` 来对目录内容进行哈希计算，而不是对每个单独的文件进行哈希计算。",
+    "vi": "&gt; **Mẹo:** Đối với các bản dựng tạo ra nhiều tệp (ví dụ: `node_modules`), hãy sử dụng\n&gt; `--dirhash-glob node_modules/*` để tính băm nội dung thư mục thay vì tính băm từng tệp riêng lẻ."
+  },
+  "81ea7b78e06fa59e96b614b5b03dfd51552c00dadfee306f191c601b1d75ee89": {
+    "es": "### 5. Revisa el attestation",
+    "fr": "### 5. Vérifier l'attestation",
+    "zh": "### 5. 检查attestation",
+    "vi": "### 5. Kiểm tra bộ lọc khí nạp (attestation)"
+  },
+  "fc04f46457af385ca4ae176f1c2e3425a5431dcfaea85aac11d34e9cdeaa2dba": {
+    "es": "El archivo «attestation» es un [sobre DSSE](https://github.com/secure-systems-lab/dsse) firmado.\nPara ver la carga útil:",
+    "fr": "Le fichier « attestation » est une [enveloppe DSSE](https://github.com/secure-systems-lab/dsse) signée.\nPour afficher le contenu :",
+    "zh": "attestation文件是一个已签名的[DSSE信封](https://github.com/secure-systems-lab/dsse)。\n要查看有效载荷：",
+    "vi": "Tệp `attestation` là một [bao bì DSSE](https://github.com/secure-systems-lab/dsse) đã được ký.\nĐể xem nội dung:"
+  },
+  "d4f4acff4274bc8d2b38a0a2d118006f871d1020d85007ff0f97bac6e70f52b8": {
+    "es": "Verás una colección «attestation» que contiene «attestations» con los siguientes tipos: `material`, `command-run`,\n`product`, `environment` y, opcionalmente, `network-trace`. Estos son los datos que utiliza SBOMit.",
+    "fr": "Vous verrez une collection « attestation » contenant des attestations de type : `material`, `command-run`,\n`product`, `environment` et, éventuellement, `network-trace`. Il s'agit des données utilisées par l'SBOMit.",
+    "zh": "您将看到一个名为attestation的集合，其中包含类型化的attestations：`material`、`command-run`、\n`product`、`environment`，以及可选的`network-trace`。这是SBOMit所使用的数据。",
+    "vi": "Bạn sẽ thấy một bộ sưu tập `attestation` chứa các `attestations` đã được gán kiểu: `material`, `command-run`,\n`product`, `environment` và tùy chọn `network-trace`. Đây là dữ liệu mà SBOMit sử dụng."
+  },
+  "5eda555a30dc6cffa23ffe10a5e1e1f5045610511894b0b971f66734c2b90c59": {
+    "es": "## Parte 2: SBOMit",
+    "fr": "## Partie 2 : SBOMit",
+    "zh": "## 第2部分：SBOMit",
+    "vi": "## Phần 2: SBOMit"
+  },
+  "b2906057bac2ca6288f159a55093c74412fb587366fd8cab06dfb8dd244527a7": {
+    "es": "A partir de un archivo «attestation», SBOMit genera un «SBOM» enriquecido mediante la ejecución de\nresolventes de paquetes específicos de cada lenguaje sobre los datos de compilación Witness observados.",
+    "fr": "À partir d'un fichier « attestation », SBOMit génère un fichier « SBOM » enrichi en exécutant des\nrésolveurs de paquets spécifiques à chaque langage sur les données de compilation Witness observées.",
+    "zh": "基于attestation文件，SBOMit 通过在观察到的构建数据 Witness 上运行特定语言的\n包解析器，生成一个增强版的 SBOM。",
+    "vi": "Khi có tệp `attestation`, `SBOMit` sẽ tạo ra tệp `SBOM` đã được bổ sung thông tin bằng cách chạy các\ntrình giải quyết gói dành riêng cho từng ngôn ngữ trên dữ liệu xây dựng Witness đã thu thập được."
+  },
+  "fd417d21c093126b92e894336cfae58b68f57deb958b5f62bfe14ec8989d4206": {
+    "es": "### 1. Instalar «SBOMit»",
+    "fr": "### 1. Installer « SBOMit »",
+    "zh": "### 1. 安装SBOMit",
+    "vi": "### 1. Cài đặt SBOMit"
+  },
+  "952e35528404dfa4d0cab5c94b43d5c38c7f658fd335e1f5543a704747cb4047": {
+    "es": "### 2. Generar un archivo «SBOM» enriquecido",
+    "fr": "### 2. Générer une «SBOM » enrichie",
+    "zh": "### 2. 生成一个经过增强的SBOM",
+    "vi": "### 2. Tạo một tệp SBOM được bổ sung thông tin"
+  },
+  "df85d982a62c768c98533831e7197844def41cc89107bbf05517503dfd04cd92": {
+    "es": "### 3. (Opcional) --catalog para capturar el árbol de dependencias",
+    "fr": "### 3. (Facultatif) --catalog pour générer l'arborescence des dépendances",
+    "zh": "### 3. （可选）使用 --catalog 选项捕获依赖关系树",
+    "vi": "### 3. (Tùy chọn) --catalog để ghi lại cây phụ thuộc"
+  },
+  "6cea86aecf73df64ad48a45c7b045b36388528c348e7aa9f7264ea1efaa870b2": {
+    "es": "SBOMit Se puede utilizar Syft como fuente de catálogo adicional, fusionando sus resultados con los datos derivados de attestation:",
+    "fr": "SBOMit peut faire appel à Syft comme source de catalogue supplémentaire, en fusionnant ses résultats avec les données issues d'attestation\n:",
+    "zh": "SBOMit 可以将 Syft 作为额外的目录来源调用，并将它的输出与attestation生成的\n数据合并：",
+    "vi": "SBOMit có thể gọi Syft làm nguồn danh mục bổ sung, đồng thời hợp nhất kết quả đầu ra của nó với dữ liệu\nđược trích xuất từ attestation:"
+  },
+  "6f93234b0674853a446fde1b0ded50217a7eaf8f9714ef48d4a641d7e22166b0": {
+    "es": "SBOMitgenera (por el momento) una **lista plana** de dependencias; sabe qué se ha instalado y utilizado, pero no reconstruye el árbol completo de dependencias. \nSyft, en el caso de ecosistemas en los que puede resolver la\nestructura en árbol (por ejemplo, módulos de Go o npm), conserva esa relación padre-hijo en su salida.",
+    "fr": "SBOMitgénère (pour l'instant) une **liste plate** de dépendances : il sait ce qui a été installé et utilisé, mais ne reconstitue pas l'arborescence complète des dépendances. \nSyft, pour les écosystèmes où il peut déterminer la\nstructure arborescente (par exemple, les modules Go ou npm), conserve cette relation parent-enfant dans sa sortie.",
+    "zh": "SBOMit（目前）会生成一个 **扁平列表** 来列出依赖项，它知道哪些组件已被安装和使用，但不会重建完整的依赖树。\n对于能够解析\n树结构的生态系统（例如 Go 模块、npm），Syft 会在其输出中保留这种父子关系。",
+    "vi": "SBOMit(hiện tại) tạo ra một **danh sách phẳng** các phụ thuộc; nó biết những gì đã được cài đặt và sử dụng, nhưng không tái tạo lại toàn bộ cây phụ thuộc. \nSyft, đối với các hệ sinh thái mà nó có thể xác định được\ncấu trúc cây (ví dụ: Go modules, npm), sẽ giữ nguyên mối quan hệ cha-con đó trong kết quả đầu ra của mình."
+  },
+  "e58e908ee8045179eb9580bb7fb29a509cc502b5c74f70e64ea0103f8256c60a": {
+    "es": "Al especificar `--catalog syft`, SBOMit utiliza el árbol de dependencias de Syft como base y\nluego lo complementa con todo aquello que Syft no puede detectar: las versiones reales instaladas en el momento de la compilación,\nlas bibliotecas nativas, los archivos que no gestiona ningún gestor de paquetes y el origen de las llamadas de red capturado\npor Witness.",
+    "fr": "En passant l'option `--catalog syft`, SBOMit utilise l'arborescence des dépendances de Syft comme base, puis\nla complète avec tout ce que Syft ne peut pas détecter : les versions réelles installées au moment de la compilation,\nles bibliothèques natives, les fichiers non gérés par un gestionnaire de paquets, ainsi que la provenance des appels réseau capturée\npar Witness.",
+    "zh": "通过传递 `--catalog syft` 参数，SBOMit 会以 Syft 的依赖树为基础，\n并补充 Syft 无法检测到的所有内容：构建时实际安装的版本、\n原生库、未被任何包管理器追踪的文件，以及由 Witness 捕获的\n网络调用来源信息。",
+    "vi": "Khi truyền tham số `--catalog syft`, SBOMit sẽ sử dụng cây phụ thuộc của Syft làm nền tảng và\nsau đó bổ sung vào đó tất cả những gì Syft không thể nhận diện được: các phiên bản thực tế đã được cài đặt tại thời điểm xây dựng,\ncác thư viện gốc, các tệp không được bất kỳ trình quản lý gói nào theo dõi, và nguồn gốc của các cuộc gọi mạng được ghi lại\nbởi Witness."
   }
 }

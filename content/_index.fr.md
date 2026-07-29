@@ -1,10 +1,12 @@
 ---
 author: "SBOMit Maintainers"
-title: "Liste des composants logiciels sur in-toto (SBOMit)"
+title: "SBOMit = SBOM + in-toto"
 translationKey: "home"
 ---
-La spécification «SBOMit» est une méthode indépendante du format «SBOM» permettant d’attester des composants à l’aide d’
-informations de vérification supplémentaires. Ces «attestation» sont générées au moment de la création de la chaîne d’approvisionnement.
+Un fichier «SBOM» vous indique le contenu du logiciel.
 
-Ces informations de vérification, qui s'appuient sur in-toto, attestations et layouts, peuvent être validées par
-une tierce partie afin d'obtenir un niveau élevé d'assurance concernant le logiciel.
+SBOMit vous aide à déterminer comment il s'est retrouvé là.
+
+Il ajoute in-toto attestations au fur et à mesure que la chaîne d'approvisionnement se déroule.
+
+Toute personne qui reçoit votre logiciel peut consulter ces attestations et obtenir des garanties solides quant à la manière dont il a été développé.
