@@ -1,14 +1,21 @@
+{{- $page := . -}}
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <header class="entry-header">
         <h1>{{ .Title | markdownify }}</h1>
     </header>
-    <div class="entry-content">
+    <div class="post-content">
+        {{- if $page.Content }}
+        {{ $page.Content }}
+        {{- else }}
         {{ .Content | markdownify }}
+        {{- end }}
     </div>
-    <div class="entry-links">
-        {{ .Links | markdownify }}
+    {{- with .Additional }}
+    <div class="post-content">
+        {{ . | markdownify }}
     </div>
+    {{- end }}
     <footer class="entry-footer">
         {{ partial "social_icons.html" site.Params.socialIcons }}
     </footer>

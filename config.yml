@@ -12,13 +12,13 @@ buildExpired: false
 
 minify:
   disableXML: true
-  minifyOutput: true
+  minifyOutput: false
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: SBOMit
-  description: "Software Bill of Materials on in-toto"
-  keywords: ["Software Bill of Materials", "in-toto", "attestation"]
+  description: "SBOMit enriches SBOMs with build-time attestations from Witness (in-toto), producing accurate, verifiable, tamper-evident software component inventories."
+  keywords: ["Software Bill of Materials", "SBOM", "in-toto", "attestation", "supply chain security", "Witness", "SPDX", "CycloneDX"]
   author: "SBOMit Maintainers"
   ## images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
@@ -57,27 +57,17 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Software Bill of Materials on in-toto (SBOMit)"
-    Content: |
-      The SBOMit specification is a SBOM format independent method for attesting components with
-      additional verification information. These attestation are generated at the time the supply chain was generated.
-
-      This verification information, which uses in-toto attestations and layouts, is able to be validated by 
-      a party to get a high degree of assurances about the software.
-    
-    Links: |
-      - [Specification](https://github.com/SBOMit/specification)
-      - [About](/about)
-    
+    Title: "SBOMit — Treat SBOMs as part of your defense, not a checkbox"
     Additional: |
-      ## Meetings
-      
-      - Schedule: every other Wednesday (biweekly) at 12pm US Eastern time at [this Zoom meeting](https://nyu.zoom.us/j/91097299041)
-      - [Notes](https://docs.google.com/document/d/1-nHXMqvWNzgOxAq08O8Wu2BTHz0U60yBoAklrJAMaRc/edit?usp=sharing)
+      ### Community & Meetings
+
+      - **Meetings**: Wednesdays at 11 AM EST — [Zoom link](https://zoom-lfx.platform.linuxfoundation.org/meeting/94671938246?password=035ca9e9-5194-491c-863b-69b21a596c67)
+      - **Meeting notes**: [Google Docs](https://docs.google.com/document/d/1-nHXMqvWNzgOxAq08O8Wu2BTHz0U60yBoAklrJAMaRc/edit?usp=sharing)
+      - **Slack**: [#sbomit on OpenSSF Slack](https://openssf.slack.com/channels/sbomit)
 
   socialIcons:
     - name: github
-      url: "https://github.com/SBOMit/specification"
+      url: "https://github.com/SBOMit/sbomit"
 
   analytics:
     google:
@@ -105,14 +95,26 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
+    - identifier: getting-started
+      name: Getting Started
+      url: /getting-started/
+      weight: 5
+    - identifier: tool
+      name: Tool
+      url: https://github.com/SBOMit/sbomit
+      weight: 10
+    - identifier: witness
+      name: Witness
+      url: https://github.com/in-toto/witness
+      weight: 15
     - identifier: specification
       name: Specification
       url: https://github.com/SBOMit/specification
-      weight: 10
-    - identifier: about
-      name: About
-      url: /about/
       weight: 20
+    - identifier: faq
+      name: FAQ
+      url: /faq/
+      weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
