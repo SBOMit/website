@@ -2,6 +2,9 @@
 publish = "public"
 command = "npm run build:production"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 [context.deploy-preview]
 command = "npm run build:preview"
 
