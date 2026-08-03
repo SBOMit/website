@@ -3,12 +3,40 @@ title: SBOMit
 paginate: 5
 theme: PaperMod
 
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
 
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+languages:
+  en:
+    locale: en
+    label: English
+    weight: 1
+    title: SBOMit
+  es:
+    locale: es
+    label: Español
+    weight: 2
+    title: SBOMit
+  fr:
+    locale: fr
+    label: Français
+    weight: 3
+    title: SBOMit
+  zh:
+    locale: zh-Hans
+    label: 中文
+    weight: 4
+    title: SBOMit
+  vi:
+    locale: vi
+    label: Tiếng Việt
+    weight: 5
+    title: SBOMit
 
 ## googleAnalytics:
 
@@ -31,6 +59,8 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: dark
   disableThemeToggle: false
+  disableLangToggle: true
+  displayFullLangName: true
 
   ShowReadingTime: true
   ShowShareButtons: false
