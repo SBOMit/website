@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{- if (and site.Params.profileMode.enabled .IsHome) }}
+  {{- partial "index_profile.html" . }}
+{{- else }}
+  {{- partial "home_info.html" . }}
+
+  <section class="home-media" aria-label="Articles and videos">
+    <div class="home-media-col">
+      <h2 class="home-media-heading">{{ i18n "articles" | default "Articles" }}</h2>
+      <ul class="home-media-list">
+        {{- range sort hugo.Data.articles "date" "desc" }}
+        <li>
+          <a class="home-media-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
+          <div class="home-media-meta">
+            {{- with .source }}{{ . }}{{ end -}}
+            {{- if and .source .date }} · {{ end -}}
+            {{- with .date }}{{ time.Format "January 2, 2006" . }}{{ end -}}
+          </div>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+
+    <div class="home-media-col">
+      <h2 class="home-media-heading">{{ i18n "videos" | default "Videos" }}</h2>
+      <ul class="home-media-list home-media-videos">
+        {{- range hugo.Data.videos }}
+        <li>
+          <a class="home-media-video" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+            <img
+              class="home-media-thumb"
+              src="https://img.youtube.com/vi/{{ .id }}/hqdefault.jpg"
+              alt=""
+              width="480"
+              height="360"
+              loading="lazy">
+            <span class="home-media-video-text">
+              <span class="home-media-link">{{ .title }}</span>
+              {{- with .source }}
+              <span class="home-media-meta">{{ . }}</span>
+              {{- end }}
+            </span>
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+{{- end }}
+{{ end }}

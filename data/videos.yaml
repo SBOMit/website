@@ -1,0 +1,17 @@
+# Homepage Videos column. Add/edit entries freely.
+# Fields: title, url, id (YouTube video id), source (optional)
+
+- title: "Your SBOM Is Lying To You – Let's Make It Honest - Justin Cappos & Yuchen Zhang, New York University"
+  url: "https://www.youtube.com/watch?v=zsaFTtRSnXI"
+  id: "zsaFTtRSnXI"
+  source: "CNCF"
+
+- title: "Asleep at the Wheel: Getting your SBOMs to pay attention... - Sanchit Sahay, Abhishek Reddypalle"
+  url: "https://www.youtube.com/watch?v=VYY3HnRtV6U"
+  id: "VYY3HnRtV6U"
+  source: "PyCon US"
+
+- title: "Your SBOM Is Lying To You – Let's Make It Honest - Justin Cappos & John Kjell"
+  url: "https://www.youtube.com/watch?v=4ZsdNUJyZXU"
+  id: "4ZsdNUJyZXU"
+  source: "The Linux Foundation"

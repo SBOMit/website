@@ -8,7 +8,7 @@
     "serve": "netlify dev -c \"hugo serve -DFE --minify -w\""
   },
   "devDependencies": {
-    "hugo-extended": "^0.111.3",
+    "hugo-extended": "^0.164.0",
     "netlify-cli": "^13.2.2"
   }
 }

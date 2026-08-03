@@ -1,0 +1,10 @@
+{{- /*
+  Open external links in a new tab. Keep same-tab for on-site paths (#anchors, /pages).
+*/ -}}
+{{- $u := .Destination -}}
+{{- $isExternal := or (strings.HasPrefix $u "http://") (strings.HasPrefix $u "https://") (strings.HasPrefix $u "//") -}}
+<a href="{{ $u | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end -}}
+>{{ .Text | safeHTML }}</a>
+{{- /* Trim trailing newline so punctuation after the link stays tight. */ -}}
