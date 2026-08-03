@@ -1,3 +1,6 @@
+{{- /* Socials + Contribute sit above the copyright footer (Phase 4). */ -}}
+{{- partial "extend_footer.html" . }}
+
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
     {{- if site.Copyright }}
@@ -9,7 +12,7 @@
         Powered by
         <a href="https://www.netlify.com/" rel="noopener noreferrer" target="_blank">Netlify</a>,
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a>, &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> | 
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a> | 
     </span>
     <span>
         <a href="https://github.com/SBOMit/specification/blob/main/LICENSE.md" rel="noopener noreferrer" target="_blank">Creative Commons Attribution 4.0 International</a>
@@ -18,14 +21,12 @@
 {{- end }}
 
 {{- if (not site.Params.disableScrollToTop) }}
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link hidden" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />
     </svg>
 </a>
 {{- end }}
-
-{{- partial "extend_footer.html" . }}
 
 <script>
     let menu = document.getElementById('menu')
@@ -59,14 +60,13 @@
 
 {{- if (not site.Params.disableScrollToTop) }}
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 
@@ -76,11 +76,12 @@
 {{- if (not site.Params.disableThemeToggle) }}
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })

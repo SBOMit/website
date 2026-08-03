@@ -1,23 +1,30 @@
-{{- $page := . -}}
+{{- /* Prefer home page content (_index.md) so translations work; fall back to homeInfoParams. */ -}}
+{{- if and .IsHome .Content }}
+<article class="first-entry home-info">
+    <header class="entry-header">
+        {{- $intotoLogo := resources.Get "new.svg" }}
+        <h1 class="home-equation">
+            SBOMit = SBOM +
+            {{- with $intotoLogo }}
+            <img class="home-equation__intoto" src="{{ .RelPermalink }}" alt="" width="40" height="40">
+            {{- end }}
+            in-toto
+        </h1>
+    </header>
+    <div class="entry-content md-content">
+        {{ .Content }}
+    </div>
+</article>
+{{- else -}}
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <header class="entry-header">
         <h1>{{ .Title | markdownify }}</h1>
     </header>
-    <div class="post-content">
-        {{- if $page.Content }}
-        {{ $page.Content }}
-        {{- else }}
-        {{ .Content | markdownify }}
-        {{- end }}
+    <div class="entry-content md-content">
+        {{ $opts := dict "display" "block" }}
+        {{ .Content | $.Page.RenderString $opts }}
     </div>
-    {{- with .Additional }}
-    <div class="post-content">
-        {{ . | markdownify }}
-    </div>
-    {{- end }}
-    <footer class="entry-footer">
-        {{ partial "social_icons.html" site.Params.socialIcons }}
-    </footer>
 </article>
+{{- end -}}
 {{- end -}}
