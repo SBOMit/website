@@ -1,6 +1,7 @@
 ---
 author: "SBOMit Maintainers"
 title: "FAQ"
+translationKey: "faq"
 ShowToc: true
 TocOpen: false
 ---
