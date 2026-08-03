@@ -3,22 +3,29 @@ title: SBOMit
 paginate: 5
 theme: PaperMod
 
+
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+
 ## googleAnalytics:
 
 minify:
   disableXML: true
-  minifyOutput: false
+  minifyOutput: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: SBOMit
-  description: "SBOMit enriches SBOMs with build-time attestations from Witness (in-toto), producing accurate, verifiable, tamper-evident software component inventories."
-  keywords: ["Software Bill of Materials", "SBOM", "in-toto", "attestation", "supply chain security", "Witness", "SPDX", "CycloneDX"]
+  description: "Software Bill of Materials on in-toto"
+  keywords: ["Software Bill of Materials", "in-toto", "attestation"]
   author: "SBOMit Maintainers"
   ## images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
@@ -26,7 +33,7 @@ params:
   disableThemeToggle: false
 
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: false
@@ -55,19 +62,12 @@ params:
     ## icon: /apple-touch-icon.png
     ## iconHeight: 35
 
-  # home-info mode
-  homeInfoParams:
-    Title: "SBOMit — Treat SBOMs as part of your defense, not a checkbox"
-    Additional: |
-      ### Community & Meetings
-
-      - **Meetings**: Wednesdays at 11 AM EST — [Zoom link](https://zoom-lfx.platform.linuxfoundation.org/meeting/94671938246?password=035ca9e9-5194-491c-863b-69b21a596c67)
-      - **Meeting notes**: [Google Docs](https://docs.google.com/document/d/1-nHXMqvWNzgOxAq08O8Wu2BTHz0U60yBoAklrJAMaRc/edit?usp=sharing)
-      - **Slack**: [#sbomit on OpenSSF Slack](https://openssf.slack.com/channels/sbomit)
-
   socialIcons:
     - name: github
       url: "https://github.com/SBOMit/sbomit"
+    - name: slack
+      # OpenSSF Slack join; Community page lists #sbomit and #sig-sbom-everywhere.
+      url: "https://slack.openssf.org/"
 
   analytics:
     google:
@@ -78,43 +78,36 @@ params:
     hiddenInList: true # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
-  editPost:
-    URL: "https://github.com/sbomit/website/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
-
-  # for search
-  # https://fusejs.io/api/options.html
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: getting-started
+    - identifier: intoto
+      name: in-toto
+      url: https://in-toto.io/
+      weight: 3
+    - identifier: witness
+      name: witness.dev
+      url: https://witness.dev
+      weight: 5
+    - identifier: manifesto
+      name: Manifesto
+      url: https://github.com/SBOMit/specification
+      weight: 10
+    - identifier: community
+      name: Community
+      url: /community/
+      weight: 20
+    - identifier: gettingstarted
       name: Getting Started
       url: /getting-started/
-      weight: 5
-    - identifier: tool
-      name: Tool
-      url: https://github.com/SBOMit/sbomit
-      weight: 10
-    - identifier: witness
-      name: Witness
-      url: https://github.com/in-toto/witness
-      weight: 15
-    - identifier: specification
-      name: Specification
-      url: https://github.com/SBOMit/specification
-      weight: 20
+      weight: 30
     - identifier: faq
       name: FAQ
       url: /faq/
-      weight: 30
+      weight: 40
+    - identifier: legal
+      name: Legal
+      url: /charter/
+      weight: 50
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:

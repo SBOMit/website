@@ -1,6 +1,7 @@
 ---
 author: "SBOMit Maintainers"
 title: "Getting Started"
+translationKey: "getting-started"
 ShowToc: true
 TocOpen: true
 ---
