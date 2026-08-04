@@ -1,0 +1,32 @@
+# Homepage Articles column. Add/edit entries freely; sorted by date (newest first).
+# Fields: title, url, source, date (YYYY-MM-DD)
+
+- title: "Asleep at the Wheel: Getting your SBOMs to pay attention to Python Builds"
+  url: "https://us.pycon.org/2026/schedule/presentation/116/"
+  source: "PyCon US 2026"
+  date: 2026-05-16
+
+- title: "Beyond the SBOM: Ensuring Integrity with Attestations — Event Recap"
+  url: "https://www.linkedin.com/posts/openssf_beyond-the-software-bill-of-materials-sbom-activity-7312933155517190145-6Otb"
+  source: "OpenSSF (LinkedIn)"
+  date: 2025-03-01
+
+- title: "A Deep Dive into SBOMit and Attestations"
+  url: "https://openssf.org/blog/2024/06/26/a-deep-dive-into-sbomit-and-attestations/"
+  source: "OpenSSF"
+  date: 2024-06-26
+
+- title: "OpenSSF Adds Attestations to SBOMs to Validate How Software is Built"
+  url: "https://www.infoq.com/news/2024/01/sbomit-attestations/"
+  source: "InfoQ"
+  date: 2024-01-03
+
+- title: "Introducing SBOMit: Adding Verification to SBOMs"
+  url: "https://openssf.org/blog/2023/12/13/introducing-sbomit-adding-verification-to-sboms/"
+  source: "OpenSSF"
+  date: 2023-12-13
+
+- title: "Introducing SBOMit: Adding Verification to SBOMs"
+  url: "https://engineering.nyu.edu/news/introducing-sbomit-adding-verification-sboms"
+  source: "NYU Tandon School of Engineering"
+  date: 2023-12-13

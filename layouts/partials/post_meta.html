@@ -1,0 +1,21 @@
+{{- $scratch := newScratch }}
+
+{{- if not (.Param "hideAuthor") -}}
+    {{- with (partial "author.html" .) }}
+        {{- $scratch.Add "meta" (slice (printf "<span>Author: %s</span>" .)) }}
+    {{- end }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+    {{- $minLabel := cond (eq .ReadingTime 1) "minute" "minutes" }}
+    {{- $scratch.Add "meta" (slice (printf "<span>%d %s</span>" .ReadingTime $minLabel)) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+    {{- $wordLabel := cond (eq .WordCount 1) "word" "words" }}
+    {{- $scratch.Add "meta" (slice (printf "<span>%d %s</span>" .WordCount $wordLabel)) }}
+{{- end }}
+
+{{- with ($scratch.Get "meta") }}
+    {{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- end -}}
